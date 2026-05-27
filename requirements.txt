@@ -1,0 +1,17 @@
+# Core ML
+numpy
+scikit-learn
+scikit-image
+joblib
+
+# Visualization
+matplotlib
+seaborn
+
+# App
+streamlit
+Pillow
+
+# Deep Learning (for local use — already on Kaggle)
+torch
+torchvision

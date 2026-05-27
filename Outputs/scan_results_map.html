@@ -1,0 +1,1777 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_3db1641c188161c6a172497a6801045d {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+    <div style="
+        position:fixed; top:15px; right:15px; z-index:9999;
+        background:white; padding:14px 18px; border-radius:12px;
+        box-shadow:0 4px 20px rgba(0,0,0,0.2); font-family:Arial;
+        min-width:220px;
+    ">
+        <h4 style="margin:0 0 10px 0; color:#2C7A3F;"> My Farm</h4>
+        <p style="margin:0 0 4px 0; font-size:12px;"> Fayoum, Egypt</p>
+        <p style="margin:0 0 4px 0; font-size:12px;"> Points scanned: <b>50</b></p>
+        <p style="margin:0 0 4px 0; font-size:12px; color:#4CAF50;">[OK] Healthy: <b>4</b></p>
+        <p style="margin:0 0 4px 0; font-size:12px; color:#F44336;">[!] Diseased: <b>46</b></p>
+        <p style="margin:0 0 8px 0; font-size:12px;"> Disease rate: <b>92.0%</b></p>
+        <hr style="border:1px solid #eee; margin:8px 0;">
+        <p style="margin:0; font-size:11px; color:#888;">
+             Healthy &nbsp;  Medium &nbsp;  High &nbsp;  Critical
+        </p>
+        <p style="margin:4px 0 0 0; font-size:10px; color:#aaa;">Click any pin for details</p>
+    </div>
+    
+    
+            <div class="folium-map" id="map_3db1641c188161c6a172497a6801045d" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_3db1641c188161c6a172497a6801045d = L.map(
+                "map_3db1641c188161c6a172497a6801045d",
+                {
+                    center: [29.42704499999998, 30.837241199999998],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 18,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_14c975a0f92b6e2cda2e6532aa774a4d = L.tileLayer(
+                "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+                {
+  "minZoom": 0,
+  "maxZoom": 18,
+  "maxNativeZoom": 18,
+  "noWrap": false,
+  "attribution": "Esri",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_14c975a0f92b6e2cda2e6532aa774a4d.addTo(map_3db1641c188161c6a172497a6801045d);
+        
+    
+            var polygon_543677a3b3f35d05d0e3f84516ad82c7 = L.polygon(
+                [[29.4285, 30.836], [29.4285, 30.8385], [29.427, 30.8385], [29.427, 30.836], [29.4285, 30.836]],
+                {"bubblingMouseEvents": true, "color": "#2C7A3F", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2C7A3F", "fillOpacity": 0.1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_3db1641c188161c6a172497a6801045d);
+        
+    
+            var circle_marker_6853086b35ec8473db2a82002274476b = L.circleMarker(
+                [29.427, 30.836],
+                {"bubblingMouseEvents": true, "color": "#F44336", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#F44336", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_3db1641c188161c6a172497a6801045d);
+        
+    
+        var popup_97f770a2ba4066ec0bcd356d4bfcd97f = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_9bcc3dc4aa9f5db11f4ca9eb9df33149 = $(`<div id="html_9bcc3dc4aa9f5db11f4ca9eb9df33149" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial; min-width:220px; max-width:280px;">             <h4 style="margin:0 0 6px 0; color:#F44336;">                 [!] Tomato Yellow Leaf Curl Virus             </h4>             <p style="margin:0; font-size:12px;"><b> Location:</b> 29.427000, 30.836000</p>             <p style="margin:0; font-size:12px;"><b>🎯 Confidence:</b> 100.0%</p>             <p style="margin:0; font-size:12px;"><b> Severity:</b> High</p>             <p style="margin:0; font-size:12px;"><b> Spread Risk:</b> High</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px; color:#555;">فيروس تجعد وصفار أوراق الطماطم ينتشر عن طريق الذباب الأبيض ويسبب تجعد الأوراق واصفرارها....</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px;"><b> Treatment:</b></p>             <p style="margin:0; font-size:11px; color:#333;">لا يوجد علاج — أزل النباتات المصابة وأتلفها فوراً. | تحكم في أعداد الذباب الأبيض باستخدام مصائد لاصقة صفراء.</p>             <p style="margin:4px 0 0 0; font-size:10px; color:#aaa;"> 2026-05-03 00:49:20</p>         </div>         </div>`)[0];
+                popup_97f770a2ba4066ec0bcd356d4bfcd97f.setContent(html_9bcc3dc4aa9f5db11f4ca9eb9df33149);
+            
+        
+
+        circle_marker_6853086b35ec8473db2a82002274476b.bindPopup(popup_97f770a2ba4066ec0bcd356d4bfcd97f)
+        ;
+
+        
+    
+    
+            circle_marker_6853086b35ec8473db2a82002274476b.bindTooltip(
+                `<div>
+                     Point 1: Tomato Yellow Leaf Curl Virus (100.0%)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_c020ade17141a2d1fb373117e8ebd2c9 = L.circleMarker(
+                [29.427, 30.836103],
+                {"bubblingMouseEvents": true, "color": "#FF9800", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF9800", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_3db1641c188161c6a172497a6801045d);
+        
+    
+        var popup_3d36bd13046cacb50e2fa53de0ba97e9 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_aac32949dd52afea02d94afca36a4db2 = $(`<div id="html_aac32949dd52afea02d94afca36a4db2" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial; min-width:220px; max-width:280px;">             <h4 style="margin:0 0 6px 0; color:#FF9800;">                 [!] Septoria leaf spot             </h4>             <p style="margin:0; font-size:12px;"><b> Location:</b> 29.427000, 30.836103</p>             <p style="margin:0; font-size:12px;"><b>🎯 Confidence:</b> 83.5%</p>             <p style="margin:0; font-size:12px;"><b> Severity:</b> Medium</p>             <p style="margin:0; font-size:12px;"><b> Spread Risk:</b> Medium</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px; color:#555;">تبقع سبتوريا يسبب بقعاً دائرية صغيرة بحدود داكنة على الأوراق السفلية....</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px;"><b> Treatment:</b></p>             <p style="margin:0; font-size:11px; color:#333;">أزل الأوراق السفلية المصابة فور ظهور البقع. | رش مبيداً فطرياً يحتوي على كلوروثالونيل أو نحاس.</p>             <p style="margin:4px 0 0 0; font-size:10px; color:#aaa;"> 2026-05-03 00:49:20</p>         </div>         </div>`)[0];
+                popup_3d36bd13046cacb50e2fa53de0ba97e9.setContent(html_aac32949dd52afea02d94afca36a4db2);
+            
+        
+
+        circle_marker_c020ade17141a2d1fb373117e8ebd2c9.bindPopup(popup_3d36bd13046cacb50e2fa53de0ba97e9)
+        ;
+
+        
+    
+    
+            circle_marker_c020ade17141a2d1fb373117e8ebd2c9.bindTooltip(
+                `<div>
+                     Point 2: Septoria leaf spot (83.5%)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_96bfd36246c3902bf4d4176d759912e1 = L.circleMarker(
+                [29.427, 30.836207],
+                {"bubblingMouseEvents": true, "color": "#B71C1C", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#B71C1C", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_3db1641c188161c6a172497a6801045d);
+        
+    
+        var popup_eb4fb388551d97160677c8a1814422db = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_45b80cd02963e5f140cf7a449f2b657c = $(`<div id="html_45b80cd02963e5f140cf7a449f2b657c" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial; min-width:220px; max-width:280px;">             <h4 style="margin:0 0 6px 0; color:#B71C1C;">                 [!] Late blight             </h4>             <p style="margin:0; font-size:12px;"><b> Location:</b> 29.427000, 30.836207</p>             <p style="margin:0; font-size:12px;"><b>🎯 Confidence:</b> 89.1%</p>             <p style="margin:0; font-size:12px;"><b> Severity:</b> Critical</p>             <p style="margin:0; font-size:12px;"><b> Spread Risk:</b> Very High</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px; color:#555;">اللفحة المتأخرة على البطاطس هي أشد الأمراض تدميراً — سببها نفس الممرض الذي أحدث المجاعة الأيرلندية....</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px;"><b> Treatment:</b></p>             <p style="margin:0; font-size:11px; color:#333;">تصرف فوراً — هذا المرض يمكن أن يدمر حقلاً بأكمله في أيام. | أزل جميع النباتات المصابة وأحرقها.</p>             <p style="margin:4px 0 0 0; font-size:10px; color:#aaa;"> 2026-05-03 00:49:20</p>         </div>         </div>`)[0];
+                popup_eb4fb388551d97160677c8a1814422db.setContent(html_45b80cd02963e5f140cf7a449f2b657c);
+            
+        
+
+        circle_marker_96bfd36246c3902bf4d4176d759912e1.bindPopup(popup_eb4fb388551d97160677c8a1814422db)
+        ;
+
+        
+    
+    
+            circle_marker_96bfd36246c3902bf4d4176d759912e1.bindTooltip(
+                `<div>
+                     Point 3: Late blight (89.1%)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_69443cb02d8d4b607a7039cb43a91e7a = L.circleMarker(
+                [29.427, 30.83631],
+                {"bubblingMouseEvents": true, "color": "#F44336", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#F44336", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_3db1641c188161c6a172497a6801045d);
+        
+    
+        var popup_5c093a78fc78079c2cb557dbe21fb0f0 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_012fe747a8fb776172d5c7a390e8f8bb = $(`<div id="html_012fe747a8fb776172d5c7a390e8f8bb" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial; min-width:220px; max-width:280px;">             <h4 style="margin:0 0 6px 0; color:#F44336;">                 [!] Late blight             </h4>             <p style="margin:0; font-size:12px;"><b> Location:</b> 29.427000, 30.836310</p>             <p style="margin:0; font-size:12px;"><b>🎯 Confidence:</b> 99.8%</p>             <p style="margin:0; font-size:12px;"><b> Severity:</b> High</p>             <p style="margin:0; font-size:12px;"><b> Spread Risk:</b> Very High</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px; color:#555;">اللفحة المتأخرة مرض فطري سريع الانتشار يسبب آفات داكنة مشبعة بالماء....</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px;"><b> Treatment:</b></p>             <p style="margin:0; font-size:11px; color:#333;">تصرف فوراً — اللفحة المتأخرة تنتشر بسرعة شديدة. | أزل جميع أجزاء النبات المصابة وأحرقها (لا تضعها في السماد).</p>             <p style="margin:4px 0 0 0; font-size:10px; color:#aaa;"> 2026-05-03 00:49:20</p>         </div>         </div>`)[0];
+                popup_5c093a78fc78079c2cb557dbe21fb0f0.setContent(html_012fe747a8fb776172d5c7a390e8f8bb);
+            
+        
+
+        circle_marker_69443cb02d8d4b607a7039cb43a91e7a.bindPopup(popup_5c093a78fc78079c2cb557dbe21fb0f0)
+        ;
+
+        
+    
+    
+            circle_marker_69443cb02d8d4b607a7039cb43a91e7a.bindTooltip(
+                `<div>
+                     Point 4: Late blight (99.8%)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_d76697a833105df78df12e32085e837c = L.circleMarker(
+                [29.427, 30.836414],
+                {"bubblingMouseEvents": true, "color": "#FF9800", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF9800", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_3db1641c188161c6a172497a6801045d);
+        
+    
+        var popup_6d0392f29018019d23475df07871713c = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_353d7471d147d450c5c41440fe4f39c4 = $(`<div id="html_353d7471d147d450c5c41440fe4f39c4" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial; min-width:220px; max-width:280px;">             <h4 style="margin:0 0 6px 0; color:#FF9800;">                 [!] Early blight             </h4>             <p style="margin:0; font-size:12px;"><b> Location:</b> 29.427000, 30.836414</p>             <p style="margin:0; font-size:12px;"><b>🎯 Confidence:</b> 99.3%</p>             <p style="margin:0; font-size:12px;"><b> Severity:</b> Medium</p>             <p style="margin:0; font-size:12px;"><b> Spread Risk:</b> Medium</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px; color:#555;">اللفحة المبكرة على البطاطس تسبب بقعاً داكنة بحلقات متحدة المركز على الأوراق القديمة....</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px;"><b> Treatment:</b></p>             <p style="margin:0; font-size:11px; color:#333;">أزل الأوراق المصابة وتخلص منها بعناية. | رش مبيداً فطرياً (مانكوزيب أو كلوروثالونيل) كل 10-14 يوماً.</p>             <p style="margin:4px 0 0 0; font-size:10px; color:#aaa;"> 2026-05-03 00:49:20</p>         </div>         </div>`)[0];
+                popup_6d0392f29018019d23475df07871713c.setContent(html_353d7471d147d450c5c41440fe4f39c4);
+            
+        
+
+        circle_marker_d76697a833105df78df12e32085e837c.bindPopup(popup_6d0392f29018019d23475df07871713c)
+        ;
+
+        
+    
+    
+            circle_marker_d76697a833105df78df12e32085e837c.bindTooltip(
+                `<div>
+                     Point 5: Early blight (99.3%)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_0f9506ab109a51ee4b6686dbbcc32e06 = L.circleMarker(
+                [29.427, 30.836517],
+                {"bubblingMouseEvents": true, "color": "#B71C1C", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#B71C1C", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_3db1641c188161c6a172497a6801045d);
+        
+    
+        var popup_a78461d2342b7bb06cc4942eac142857 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_60e18d9e1a64d66d17e1569d839abb21 = $(`<div id="html_60e18d9e1a64d66d17e1569d839abb21" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial; min-width:220px; max-width:280px;">             <h4 style="margin:0 0 6px 0; color:#B71C1C;">                 [!] Late blight             </h4>             <p style="margin:0; font-size:12px;"><b> Location:</b> 29.427000, 30.836517</p>             <p style="margin:0; font-size:12px;"><b>🎯 Confidence:</b> 71.1%</p>             <p style="margin:0; font-size:12px;"><b> Severity:</b> Critical</p>             <p style="margin:0; font-size:12px;"><b> Spread Risk:</b> Very High</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px; color:#555;">اللفحة المتأخرة على البطاطس هي أشد الأمراض تدميراً — سببها نفس الممرض الذي أحدث المجاعة الأيرلندية....</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px;"><b> Treatment:</b></p>             <p style="margin:0; font-size:11px; color:#333;">تصرف فوراً — هذا المرض يمكن أن يدمر حقلاً بأكمله في أيام. | أزل جميع النباتات المصابة وأحرقها.</p>             <p style="margin:4px 0 0 0; font-size:10px; color:#aaa;"> 2026-05-03 00:49:20</p>         </div>         </div>`)[0];
+                popup_a78461d2342b7bb06cc4942eac142857.setContent(html_60e18d9e1a64d66d17e1569d839abb21);
+            
+        
+
+        circle_marker_0f9506ab109a51ee4b6686dbbcc32e06.bindPopup(popup_a78461d2342b7bb06cc4942eac142857)
+        ;
+
+        
+    
+    
+            circle_marker_0f9506ab109a51ee4b6686dbbcc32e06.bindTooltip(
+                `<div>
+                     Point 6: Late blight (71.1%)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_2f20c7e34d3ad8492ff00a5dfe338aed = L.circleMarker(
+                [29.427, 30.836621],
+                {"bubblingMouseEvents": true, "color": "#FF9800", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF9800", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_3db1641c188161c6a172497a6801045d);
+        
+    
+        var popup_678ac9ed1c3878f4423d112b43bab2b0 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_3700e4062af442454106fd133b336cbe = $(`<div id="html_3700e4062af442454106fd133b336cbe" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial; min-width:220px; max-width:280px;">             <h4 style="margin:0 0 6px 0; color:#FF9800;">                 [!] Septoria leaf spot             </h4>             <p style="margin:0; font-size:12px;"><b> Location:</b> 29.427000, 30.836621</p>             <p style="margin:0; font-size:12px;"><b>🎯 Confidence:</b> 99.5%</p>             <p style="margin:0; font-size:12px;"><b> Severity:</b> Medium</p>             <p style="margin:0; font-size:12px;"><b> Spread Risk:</b> Medium</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px; color:#555;">تبقع سبتوريا يسبب بقعاً دائرية صغيرة بحدود داكنة على الأوراق السفلية....</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px;"><b> Treatment:</b></p>             <p style="margin:0; font-size:11px; color:#333;">أزل الأوراق السفلية المصابة فور ظهور البقع. | رش مبيداً فطرياً يحتوي على كلوروثالونيل أو نحاس.</p>             <p style="margin:4px 0 0 0; font-size:10px; color:#aaa;"> 2026-05-03 00:49:20</p>         </div>         </div>`)[0];
+                popup_678ac9ed1c3878f4423d112b43bab2b0.setContent(html_3700e4062af442454106fd133b336cbe);
+            
+        
+
+        circle_marker_2f20c7e34d3ad8492ff00a5dfe338aed.bindPopup(popup_678ac9ed1c3878f4423d112b43bab2b0)
+        ;
+
+        
+    
+    
+            circle_marker_2f20c7e34d3ad8492ff00a5dfe338aed.bindTooltip(
+                `<div>
+                     Point 7: Septoria leaf spot (99.5%)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_34c9510e44161a8487b87dd23f5d6e5b = L.circleMarker(
+                [29.427, 30.836724],
+                {"bubblingMouseEvents": true, "color": "#FF9800", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF9800", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_3db1641c188161c6a172497a6801045d);
+        
+    
+        var popup_95a7cc3a8d84c0990b7e574a2c94cf4b = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_2469eadc2cdfacf5e76c60293075f099 = $(`<div id="html_2469eadc2cdfacf5e76c60293075f099" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial; min-width:220px; max-width:280px;">             <h4 style="margin:0 0 6px 0; color:#FF9800;">                 [!] Early blight             </h4>             <p style="margin:0; font-size:12px;"><b> Location:</b> 29.427000, 30.836724</p>             <p style="margin:0; font-size:12px;"><b>🎯 Confidence:</b> 89.8%</p>             <p style="margin:0; font-size:12px;"><b> Severity:</b> Medium</p>             <p style="margin:0; font-size:12px;"><b> Spread Risk:</b> High</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px; color:#555;">اللفحة المبكرة مرض فطري يسبب بقعاً بنية داكنة بحلقات صفراء على الأوراق....</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px;"><b> Treatment:</b></p>             <p style="margin:0; font-size:11px; color:#333;">قم بإزالة وإتلاف جميع الأوراق المصابة فوراً. | رش مبيد فطري نحاسي (مثل مزيج بوردو) كل 7-10 أيام.</p>             <p style="margin:4px 0 0 0; font-size:10px; color:#aaa;"> 2026-05-03 00:49:20</p>         </div>         </div>`)[0];
+                popup_95a7cc3a8d84c0990b7e574a2c94cf4b.setContent(html_2469eadc2cdfacf5e76c60293075f099);
+            
+        
+
+        circle_marker_34c9510e44161a8487b87dd23f5d6e5b.bindPopup(popup_95a7cc3a8d84c0990b7e574a2c94cf4b)
+        ;
+
+        
+    
+    
+            circle_marker_34c9510e44161a8487b87dd23f5d6e5b.bindTooltip(
+                `<div>
+                     Point 8: Early blight (89.8%)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_934ef41e2eaccc5490a5df3ba333eb83 = L.circleMarker(
+                [29.427, 30.836827],
+                {"bubblingMouseEvents": true, "color": "#4CAF50", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#4CAF50", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_3db1641c188161c6a172497a6801045d);
+        
+    
+        var popup_624ad1ed864d6cdfc24a3687c1485c19 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_7703f0aaa8746ee1b765a6fc4a6d641b = $(`<div id="html_7703f0aaa8746ee1b765a6fc4a6d641b" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial; min-width:220px; max-width:280px;">             <h4 style="margin:0 0 6px 0; color:#4CAF50;">                 [OK] healthy             </h4>             <p style="margin:0; font-size:12px;"><b> Location:</b> 29.427000, 30.836827</p>             <p style="margin:0; font-size:12px;"><b>🎯 Confidence:</b> 100.0%</p>             <p style="margin:0; font-size:12px;"><b> Severity:</b> None</p>             <p style="margin:0; font-size:12px;"><b> Spread Risk:</b> None</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px; color:#555;">هذا النبات سليم. لم يتم اكتشاف أي مرض....</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px;"><b> Treatment:</b></p>             <p style="margin:0; font-size:11px; color:#333;">استمر في جدول الري والتسميد المنتظم. | راقب أسبوعياً للكشف المبكر عن علامات الأمراض.</p>             <p style="margin:4px 0 0 0; font-size:10px; color:#aaa;"> 2026-05-03 00:49:20</p>         </div>         </div>`)[0];
+                popup_624ad1ed864d6cdfc24a3687c1485c19.setContent(html_7703f0aaa8746ee1b765a6fc4a6d641b);
+            
+        
+
+        circle_marker_934ef41e2eaccc5490a5df3ba333eb83.bindPopup(popup_624ad1ed864d6cdfc24a3687c1485c19)
+        ;
+
+        
+    
+    
+            circle_marker_934ef41e2eaccc5490a5df3ba333eb83.bindTooltip(
+                `<div>
+                     Point 9: healthy (100.0%)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_feec255222afcb0c5bea138137726c9c = L.circleMarker(
+                [29.427, 30.836931],
+                {"bubblingMouseEvents": true, "color": "#F44336", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#F44336", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_3db1641c188161c6a172497a6801045d);
+        
+    
+        var popup_6d7571e5698f35d4d71c134a12227419 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_3d5539728bb1167cec6409e01a6c438a = $(`<div id="html_3d5539728bb1167cec6409e01a6c438a" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial; min-width:220px; max-width:280px;">             <h4 style="margin:0 0 6px 0; color:#F44336;">                 [!] Tomato Yellow Leaf Curl Virus             </h4>             <p style="margin:0; font-size:12px;"><b> Location:</b> 29.427000, 30.836931</p>             <p style="margin:0; font-size:12px;"><b>🎯 Confidence:</b> 100.0%</p>             <p style="margin:0; font-size:12px;"><b> Severity:</b> High</p>             <p style="margin:0; font-size:12px;"><b> Spread Risk:</b> High</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px; color:#555;">فيروس تجعد وصفار أوراق الطماطم ينتشر عن طريق الذباب الأبيض ويسبب تجعد الأوراق واصفرارها....</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px;"><b> Treatment:</b></p>             <p style="margin:0; font-size:11px; color:#333;">لا يوجد علاج — أزل النباتات المصابة وأتلفها فوراً. | تحكم في أعداد الذباب الأبيض باستخدام مصائد لاصقة صفراء.</p>             <p style="margin:4px 0 0 0; font-size:10px; color:#aaa;"> 2026-05-03 00:49:20</p>         </div>         </div>`)[0];
+                popup_6d7571e5698f35d4d71c134a12227419.setContent(html_3d5539728bb1167cec6409e01a6c438a);
+            
+        
+
+        circle_marker_feec255222afcb0c5bea138137726c9c.bindPopup(popup_6d7571e5698f35d4d71c134a12227419)
+        ;
+
+        
+    
+    
+            circle_marker_feec255222afcb0c5bea138137726c9c.bindTooltip(
+                `<div>
+                     Point 10: Tomato Yellow Leaf Curl Virus (100.0%)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_4c6fd4979a0ceb50ae6b5384ee209e00 = L.circleMarker(
+                [29.427, 30.837034],
+                {"bubblingMouseEvents": true, "color": "#FF9800", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF9800", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_3db1641c188161c6a172497a6801045d);
+        
+    
+        var popup_cd656f7b1a1de165a9dfa9e413d77042 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_4addb410e3e61cc9bf1e903f9419db41 = $(`<div id="html_4addb410e3e61cc9bf1e903f9419db41" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial; min-width:220px; max-width:280px;">             <h4 style="margin:0 0 6px 0; color:#FF9800;">                 [!] Septoria leaf spot             </h4>             <p style="margin:0; font-size:12px;"><b> Location:</b> 29.427000, 30.837034</p>             <p style="margin:0; font-size:12px;"><b>🎯 Confidence:</b> 100.0%</p>             <p style="margin:0; font-size:12px;"><b> Severity:</b> Medium</p>             <p style="margin:0; font-size:12px;"><b> Spread Risk:</b> Medium</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px; color:#555;">تبقع سبتوريا يسبب بقعاً دائرية صغيرة بحدود داكنة على الأوراق السفلية....</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px;"><b> Treatment:</b></p>             <p style="margin:0; font-size:11px; color:#333;">أزل الأوراق السفلية المصابة فور ظهور البقع. | رش مبيداً فطرياً يحتوي على كلوروثالونيل أو نحاس.</p>             <p style="margin:4px 0 0 0; font-size:10px; color:#aaa;"> 2026-05-03 00:49:21</p>         </div>         </div>`)[0];
+                popup_cd656f7b1a1de165a9dfa9e413d77042.setContent(html_4addb410e3e61cc9bf1e903f9419db41);
+            
+        
+
+        circle_marker_4c6fd4979a0ceb50ae6b5384ee209e00.bindPopup(popup_cd656f7b1a1de165a9dfa9e413d77042)
+        ;
+
+        
+    
+    
+            circle_marker_4c6fd4979a0ceb50ae6b5384ee209e00.bindTooltip(
+                `<div>
+                     Point 11: Septoria leaf spot (100.0%)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_1d68f4c951340def15b130220b118ff5 = L.circleMarker(
+                [29.427, 30.837138],
+                {"bubblingMouseEvents": true, "color": "#FF9800", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF9800", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_3db1641c188161c6a172497a6801045d);
+        
+    
+        var popup_463dbc7374601c2fada2e54f7c28c0f1 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_71f801ae23d20978c489def06879c67c = $(`<div id="html_71f801ae23d20978c489def06879c67c" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial; min-width:220px; max-width:280px;">             <h4 style="margin:0 0 6px 0; color:#FF9800;">                 [!] Early blight             </h4>             <p style="margin:0; font-size:12px;"><b> Location:</b> 29.427000, 30.837138</p>             <p style="margin:0; font-size:12px;"><b>🎯 Confidence:</b> 100.0%</p>             <p style="margin:0; font-size:12px;"><b> Severity:</b> Medium</p>             <p style="margin:0; font-size:12px;"><b> Spread Risk:</b> High</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px; color:#555;">اللفحة المبكرة مرض فطري يسبب بقعاً بنية داكنة بحلقات صفراء على الأوراق....</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px;"><b> Treatment:</b></p>             <p style="margin:0; font-size:11px; color:#333;">قم بإزالة وإتلاف جميع الأوراق المصابة فوراً. | رش مبيد فطري نحاسي (مثل مزيج بوردو) كل 7-10 أيام.</p>             <p style="margin:4px 0 0 0; font-size:10px; color:#aaa;"> 2026-05-03 00:49:21</p>         </div>         </div>`)[0];
+                popup_463dbc7374601c2fada2e54f7c28c0f1.setContent(html_71f801ae23d20978c489def06879c67c);
+            
+        
+
+        circle_marker_1d68f4c951340def15b130220b118ff5.bindPopup(popup_463dbc7374601c2fada2e54f7c28c0f1)
+        ;
+
+        
+    
+    
+            circle_marker_1d68f4c951340def15b130220b118ff5.bindTooltip(
+                `<div>
+                     Point 12: Early blight (100.0%)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_13101bddf0b8ae1bdaa47c426b81d94c = L.circleMarker(
+                [29.427, 30.837241],
+                {"bubblingMouseEvents": true, "color": "#FF9800", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF9800", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_3db1641c188161c6a172497a6801045d);
+        
+    
+        var popup_776ec9f93c01f2b8442ff800c4d0a524 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_0264245e41f1cda2e017d4af6c9b42c8 = $(`<div id="html_0264245e41f1cda2e017d4af6c9b42c8" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial; min-width:220px; max-width:280px;">             <h4 style="margin:0 0 6px 0; color:#FF9800;">                 [!] Septoria leaf spot             </h4>             <p style="margin:0; font-size:12px;"><b> Location:</b> 29.427000, 30.837241</p>             <p style="margin:0; font-size:12px;"><b>🎯 Confidence:</b> 72.2%</p>             <p style="margin:0; font-size:12px;"><b> Severity:</b> Medium</p>             <p style="margin:0; font-size:12px;"><b> Spread Risk:</b> Medium</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px; color:#555;">تبقع سبتوريا يسبب بقعاً دائرية صغيرة بحدود داكنة على الأوراق السفلية....</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px;"><b> Treatment:</b></p>             <p style="margin:0; font-size:11px; color:#333;">أزل الأوراق السفلية المصابة فور ظهور البقع. | رش مبيداً فطرياً يحتوي على كلوروثالونيل أو نحاس.</p>             <p style="margin:4px 0 0 0; font-size:10px; color:#aaa;"> 2026-05-03 00:49:21</p>         </div>         </div>`)[0];
+                popup_776ec9f93c01f2b8442ff800c4d0a524.setContent(html_0264245e41f1cda2e017d4af6c9b42c8);
+            
+        
+
+        circle_marker_13101bddf0b8ae1bdaa47c426b81d94c.bindPopup(popup_776ec9f93c01f2b8442ff800c4d0a524)
+        ;
+
+        
+    
+    
+            circle_marker_13101bddf0b8ae1bdaa47c426b81d94c.bindTooltip(
+                `<div>
+                     Point 13: Septoria leaf spot (72.2%)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_14af99dee44fdf5b7e30635aff7e6f55 = L.circleMarker(
+                [29.427, 30.837345],
+                {"bubblingMouseEvents": true, "color": "#F44336", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#F44336", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_3db1641c188161c6a172497a6801045d);
+        
+    
+        var popup_662f702c2152cbfd1138d09bbf5d7e5b = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_e268d4f8445d2a91fdd8985e1e2495bd = $(`<div id="html_e268d4f8445d2a91fdd8985e1e2495bd" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial; min-width:220px; max-width:280px;">             <h4 style="margin:0 0 6px 0; color:#F44336;">                 [!] Late blight             </h4>             <p style="margin:0; font-size:12px;"><b> Location:</b> 29.427000, 30.837345</p>             <p style="margin:0; font-size:12px;"><b>🎯 Confidence:</b> 77.3%</p>             <p style="margin:0; font-size:12px;"><b> Severity:</b> High</p>             <p style="margin:0; font-size:12px;"><b> Spread Risk:</b> Very High</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px; color:#555;">اللفحة المتأخرة مرض فطري سريع الانتشار يسبب آفات داكنة مشبعة بالماء....</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px;"><b> Treatment:</b></p>             <p style="margin:0; font-size:11px; color:#333;">تصرف فوراً — اللفحة المتأخرة تنتشر بسرعة شديدة. | أزل جميع أجزاء النبات المصابة وأحرقها (لا تضعها في السماد).</p>             <p style="margin:4px 0 0 0; font-size:10px; color:#aaa;"> 2026-05-03 00:49:21</p>         </div>         </div>`)[0];
+                popup_662f702c2152cbfd1138d09bbf5d7e5b.setContent(html_e268d4f8445d2a91fdd8985e1e2495bd);
+            
+        
+
+        circle_marker_14af99dee44fdf5b7e30635aff7e6f55.bindPopup(popup_662f702c2152cbfd1138d09bbf5d7e5b)
+        ;
+
+        
+    
+    
+            circle_marker_14af99dee44fdf5b7e30635aff7e6f55.bindTooltip(
+                `<div>
+                     Point 14: Late blight (77.3%)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_90479a0384ad0b17271aa2aaa4afaa54 = L.circleMarker(
+                [29.427, 30.837448],
+                {"bubblingMouseEvents": true, "color": "#F44336", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#F44336", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_3db1641c188161c6a172497a6801045d);
+        
+    
+        var popup_b8f4a2125795197dd10695b02546c5d9 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_bf9f88f147df09699384b18626d5c4b4 = $(`<div id="html_bf9f88f147df09699384b18626d5c4b4" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial; min-width:220px; max-width:280px;">             <h4 style="margin:0 0 6px 0; color:#F44336;">                 [!] Late blight             </h4>             <p style="margin:0; font-size:12px;"><b> Location:</b> 29.427000, 30.837448</p>             <p style="margin:0; font-size:12px;"><b>🎯 Confidence:</b> 99.8%</p>             <p style="margin:0; font-size:12px;"><b> Severity:</b> High</p>             <p style="margin:0; font-size:12px;"><b> Spread Risk:</b> Very High</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px; color:#555;">اللفحة المتأخرة مرض فطري سريع الانتشار يسبب آفات داكنة مشبعة بالماء....</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px;"><b> Treatment:</b></p>             <p style="margin:0; font-size:11px; color:#333;">تصرف فوراً — اللفحة المتأخرة تنتشر بسرعة شديدة. | أزل جميع أجزاء النبات المصابة وأحرقها (لا تضعها في السماد).</p>             <p style="margin:4px 0 0 0; font-size:10px; color:#aaa;"> 2026-05-03 00:49:21</p>         </div>         </div>`)[0];
+                popup_b8f4a2125795197dd10695b02546c5d9.setContent(html_bf9f88f147df09699384b18626d5c4b4);
+            
+        
+
+        circle_marker_90479a0384ad0b17271aa2aaa4afaa54.bindPopup(popup_b8f4a2125795197dd10695b02546c5d9)
+        ;
+
+        
+    
+    
+            circle_marker_90479a0384ad0b17271aa2aaa4afaa54.bindTooltip(
+                `<div>
+                     Point 15: Late blight (99.8%)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e081000cf40e089b43cec3da4873b54c = L.circleMarker(
+                [29.427, 30.837552],
+                {"bubblingMouseEvents": true, "color": "#F44336", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#F44336", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_3db1641c188161c6a172497a6801045d);
+        
+    
+        var popup_69da7f7a4291b7fa4a687fe40d616449 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_289a05f80af72c640fa967c41cd3cce6 = $(`<div id="html_289a05f80af72c640fa967c41cd3cce6" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial; min-width:220px; max-width:280px;">             <h4 style="margin:0 0 6px 0; color:#F44336;">                 [!] Late blight             </h4>             <p style="margin:0; font-size:12px;"><b> Location:</b> 29.427000, 30.837552</p>             <p style="margin:0; font-size:12px;"><b>🎯 Confidence:</b> 100.0%</p>             <p style="margin:0; font-size:12px;"><b> Severity:</b> High</p>             <p style="margin:0; font-size:12px;"><b> Spread Risk:</b> Very High</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px; color:#555;">اللفحة المتأخرة مرض فطري سريع الانتشار يسبب آفات داكنة مشبعة بالماء....</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px;"><b> Treatment:</b></p>             <p style="margin:0; font-size:11px; color:#333;">تصرف فوراً — اللفحة المتأخرة تنتشر بسرعة شديدة. | أزل جميع أجزاء النبات المصابة وأحرقها (لا تضعها في السماد).</p>             <p style="margin:4px 0 0 0; font-size:10px; color:#aaa;"> 2026-05-03 00:49:21</p>         </div>         </div>`)[0];
+                popup_69da7f7a4291b7fa4a687fe40d616449.setContent(html_289a05f80af72c640fa967c41cd3cce6);
+            
+        
+
+        circle_marker_e081000cf40e089b43cec3da4873b54c.bindPopup(popup_69da7f7a4291b7fa4a687fe40d616449)
+        ;
+
+        
+    
+    
+            circle_marker_e081000cf40e089b43cec3da4873b54c.bindTooltip(
+                `<div>
+                     Point 16: Late blight (100.0%)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_61ac7e23a8f00d5f5db4ad5233745c4a = L.circleMarker(
+                [29.427, 30.837655],
+                {"bubblingMouseEvents": true, "color": "#FF9800", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF9800", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_3db1641c188161c6a172497a6801045d);
+        
+    
+        var popup_f947ad050046b6b0561755620e2fc591 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_960eb07636476bf09690c1e5ede339ce = $(`<div id="html_960eb07636476bf09690c1e5ede339ce" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial; min-width:220px; max-width:280px;">             <h4 style="margin:0 0 6px 0; color:#FF9800;">                 [!] Early blight             </h4>             <p style="margin:0; font-size:12px;"><b> Location:</b> 29.427000, 30.837655</p>             <p style="margin:0; font-size:12px;"><b>🎯 Confidence:</b> 74.1%</p>             <p style="margin:0; font-size:12px;"><b> Severity:</b> Medium</p>             <p style="margin:0; font-size:12px;"><b> Spread Risk:</b> Medium</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px; color:#555;">اللفحة المبكرة على البطاطس تسبب بقعاً داكنة بحلقات متحدة المركز على الأوراق القديمة....</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px;"><b> Treatment:</b></p>             <p style="margin:0; font-size:11px; color:#333;">أزل الأوراق المصابة وتخلص منها بعناية. | رش مبيداً فطرياً (مانكوزيب أو كلوروثالونيل) كل 10-14 يوماً.</p>             <p style="margin:4px 0 0 0; font-size:10px; color:#aaa;"> 2026-05-03 00:49:21</p>         </div>         </div>`)[0];
+                popup_f947ad050046b6b0561755620e2fc591.setContent(html_960eb07636476bf09690c1e5ede339ce);
+            
+        
+
+        circle_marker_61ac7e23a8f00d5f5db4ad5233745c4a.bindPopup(popup_f947ad050046b6b0561755620e2fc591)
+        ;
+
+        
+    
+    
+            circle_marker_61ac7e23a8f00d5f5db4ad5233745c4a.bindTooltip(
+                `<div>
+                     Point 17: Early blight (74.1%)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_261d65e622d7cedf07792b2ff5228de0 = L.circleMarker(
+                [29.427, 30.837758],
+                {"bubblingMouseEvents": true, "color": "#FF9800", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF9800", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_3db1641c188161c6a172497a6801045d);
+        
+    
+        var popup_aa883a8a93db0a6af2abe84ca02a37c0 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_363e84eead831c557e2701d337ffcfe3 = $(`<div id="html_363e84eead831c557e2701d337ffcfe3" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial; min-width:220px; max-width:280px;">             <h4 style="margin:0 0 6px 0; color:#FF9800;">                 [!] Early blight             </h4>             <p style="margin:0; font-size:12px;"><b> Location:</b> 29.427000, 30.837758</p>             <p style="margin:0; font-size:12px;"><b>🎯 Confidence:</b> 99.7%</p>             <p style="margin:0; font-size:12px;"><b> Severity:</b> Medium</p>             <p style="margin:0; font-size:12px;"><b> Spread Risk:</b> Medium</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px; color:#555;">اللفحة المبكرة على البطاطس تسبب بقعاً داكنة بحلقات متحدة المركز على الأوراق القديمة....</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px;"><b> Treatment:</b></p>             <p style="margin:0; font-size:11px; color:#333;">أزل الأوراق المصابة وتخلص منها بعناية. | رش مبيداً فطرياً (مانكوزيب أو كلوروثالونيل) كل 10-14 يوماً.</p>             <p style="margin:4px 0 0 0; font-size:10px; color:#aaa;"> 2026-05-03 00:49:21</p>         </div>         </div>`)[0];
+                popup_aa883a8a93db0a6af2abe84ca02a37c0.setContent(html_363e84eead831c557e2701d337ffcfe3);
+            
+        
+
+        circle_marker_261d65e622d7cedf07792b2ff5228de0.bindPopup(popup_aa883a8a93db0a6af2abe84ca02a37c0)
+        ;
+
+        
+    
+    
+            circle_marker_261d65e622d7cedf07792b2ff5228de0.bindTooltip(
+                `<div>
+                     Point 18: Early blight (99.7%)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_a3ca07f7d4432561662904d724b101bb = L.circleMarker(
+                [29.427, 30.837862],
+                {"bubblingMouseEvents": true, "color": "#FF9800", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF9800", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_3db1641c188161c6a172497a6801045d);
+        
+    
+        var popup_2e2feebbb13d5575b6c77a5315ece8eb = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_efaffd05997bdfcb47923993c514fae4 = $(`<div id="html_efaffd05997bdfcb47923993c514fae4" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial; min-width:220px; max-width:280px;">             <h4 style="margin:0 0 6px 0; color:#FF9800;">                 [!] Early blight             </h4>             <p style="margin:0; font-size:12px;"><b> Location:</b> 29.427000, 30.837862</p>             <p style="margin:0; font-size:12px;"><b>🎯 Confidence:</b> 99.9%</p>             <p style="margin:0; font-size:12px;"><b> Severity:</b> Medium</p>             <p style="margin:0; font-size:12px;"><b> Spread Risk:</b> High</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px; color:#555;">اللفحة المبكرة مرض فطري يسبب بقعاً بنية داكنة بحلقات صفراء على الأوراق....</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px;"><b> Treatment:</b></p>             <p style="margin:0; font-size:11px; color:#333;">قم بإزالة وإتلاف جميع الأوراق المصابة فوراً. | رش مبيد فطري نحاسي (مثل مزيج بوردو) كل 7-10 أيام.</p>             <p style="margin:4px 0 0 0; font-size:10px; color:#aaa;"> 2026-05-03 00:49:21</p>         </div>         </div>`)[0];
+                popup_2e2feebbb13d5575b6c77a5315ece8eb.setContent(html_efaffd05997bdfcb47923993c514fae4);
+            
+        
+
+        circle_marker_a3ca07f7d4432561662904d724b101bb.bindPopup(popup_2e2feebbb13d5575b6c77a5315ece8eb)
+        ;
+
+        
+    
+    
+            circle_marker_a3ca07f7d4432561662904d724b101bb.bindTooltip(
+                `<div>
+                     Point 19: Early blight (99.9%)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_d144f3daa7a44f48012b80491f76afa9 = L.circleMarker(
+                [29.427, 30.837965],
+                {"bubblingMouseEvents": true, "color": "#4CAF50", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#4CAF50", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_3db1641c188161c6a172497a6801045d);
+        
+    
+        var popup_f2b5cb2184a9a11222b0af13032e9f4c = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_e72308eb382ff58cb90372b144963f53 = $(`<div id="html_e72308eb382ff58cb90372b144963f53" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial; min-width:220px; max-width:280px;">             <h4 style="margin:0 0 6px 0; color:#4CAF50;">                 [OK] healthy             </h4>             <p style="margin:0; font-size:12px;"><b> Location:</b> 29.427000, 30.837965</p>             <p style="margin:0; font-size:12px;"><b>🎯 Confidence:</b> 100.0%</p>             <p style="margin:0; font-size:12px;"><b> Severity:</b> None</p>             <p style="margin:0; font-size:12px;"><b> Spread Risk:</b> None</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px; color:#555;">هذا النبات سليم. لم يتم اكتشاف أي مرض....</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px;"><b> Treatment:</b></p>             <p style="margin:0; font-size:11px; color:#333;">استمر في جدول الري والتسميد المنتظم. | راقب أسبوعياً للكشف المبكر عن علامات الأمراض.</p>             <p style="margin:4px 0 0 0; font-size:10px; color:#aaa;"> 2026-05-03 00:49:21</p>         </div>         </div>`)[0];
+                popup_f2b5cb2184a9a11222b0af13032e9f4c.setContent(html_e72308eb382ff58cb90372b144963f53);
+            
+        
+
+        circle_marker_d144f3daa7a44f48012b80491f76afa9.bindPopup(popup_f2b5cb2184a9a11222b0af13032e9f4c)
+        ;
+
+        
+    
+    
+            circle_marker_d144f3daa7a44f48012b80491f76afa9.bindTooltip(
+                `<div>
+                     Point 20: healthy (100.0%)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_dabb81393c2f6ab507be164bfdd8240b = L.circleMarker(
+                [29.427, 30.838069],
+                {"bubblingMouseEvents": true, "color": "#F44336", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#F44336", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_3db1641c188161c6a172497a6801045d);
+        
+    
+        var popup_84decc92ea3425442687c753ad35735c = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_92209adea882c6402b2365d5d60c40d1 = $(`<div id="html_92209adea882c6402b2365d5d60c40d1" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial; min-width:220px; max-width:280px;">             <h4 style="margin:0 0 6px 0; color:#F44336;">                 [!] Late blight             </h4>             <p style="margin:0; font-size:12px;"><b> Location:</b> 29.427000, 30.838069</p>             <p style="margin:0; font-size:12px;"><b>🎯 Confidence:</b> 100.0%</p>             <p style="margin:0; font-size:12px;"><b> Severity:</b> High</p>             <p style="margin:0; font-size:12px;"><b> Spread Risk:</b> Very High</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px; color:#555;">اللفحة المتأخرة مرض فطري سريع الانتشار يسبب آفات داكنة مشبعة بالماء....</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px;"><b> Treatment:</b></p>             <p style="margin:0; font-size:11px; color:#333;">تصرف فوراً — اللفحة المتأخرة تنتشر بسرعة شديدة. | أزل جميع أجزاء النبات المصابة وأحرقها (لا تضعها في السماد).</p>             <p style="margin:4px 0 0 0; font-size:10px; color:#aaa;"> 2026-05-03 00:49:22</p>         </div>         </div>`)[0];
+                popup_84decc92ea3425442687c753ad35735c.setContent(html_92209adea882c6402b2365d5d60c40d1);
+            
+        
+
+        circle_marker_dabb81393c2f6ab507be164bfdd8240b.bindPopup(popup_84decc92ea3425442687c753ad35735c)
+        ;
+
+        
+    
+    
+            circle_marker_dabb81393c2f6ab507be164bfdd8240b.bindTooltip(
+                `<div>
+                     Point 21: Late blight (100.0%)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_d4ee6bc8a0f1a298e46d4e4cbdf60f89 = L.circleMarker(
+                [29.427, 30.838172],
+                {"bubblingMouseEvents": true, "color": "#FF9800", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF9800", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_3db1641c188161c6a172497a6801045d);
+        
+    
+        var popup_ef44570ebf4102580215e6a177906b9d = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_c73bd8417cb7c624023a7691cffb8eec = $(`<div id="html_c73bd8417cb7c624023a7691cffb8eec" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial; min-width:220px; max-width:280px;">             <h4 style="margin:0 0 6px 0; color:#FF9800;">                 [!] Septoria leaf spot             </h4>             <p style="margin:0; font-size:12px;"><b> Location:</b> 29.427000, 30.838172</p>             <p style="margin:0; font-size:12px;"><b>🎯 Confidence:</b> 99.9%</p>             <p style="margin:0; font-size:12px;"><b> Severity:</b> Medium</p>             <p style="margin:0; font-size:12px;"><b> Spread Risk:</b> Medium</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px; color:#555;">تبقع سبتوريا يسبب بقعاً دائرية صغيرة بحدود داكنة على الأوراق السفلية....</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px;"><b> Treatment:</b></p>             <p style="margin:0; font-size:11px; color:#333;">أزل الأوراق السفلية المصابة فور ظهور البقع. | رش مبيداً فطرياً يحتوي على كلوروثالونيل أو نحاس.</p>             <p style="margin:4px 0 0 0; font-size:10px; color:#aaa;"> 2026-05-03 00:49:22</p>         </div>         </div>`)[0];
+                popup_ef44570ebf4102580215e6a177906b9d.setContent(html_c73bd8417cb7c624023a7691cffb8eec);
+            
+        
+
+        circle_marker_d4ee6bc8a0f1a298e46d4e4cbdf60f89.bindPopup(popup_ef44570ebf4102580215e6a177906b9d)
+        ;
+
+        
+    
+    
+            circle_marker_d4ee6bc8a0f1a298e46d4e4cbdf60f89.bindTooltip(
+                `<div>
+                     Point 22: Septoria leaf spot (99.9%)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_4e0c4617b4210606a7969f46d8328825 = L.circleMarker(
+                [29.427, 30.838276],
+                {"bubblingMouseEvents": true, "color": "#FF9800", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF9800", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_3db1641c188161c6a172497a6801045d);
+        
+    
+        var popup_ca8f82fa1eefb37189dc3c8661cda0b1 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_2d379cb2484ec35bf61fa309893ccfda = $(`<div id="html_2d379cb2484ec35bf61fa309893ccfda" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial; min-width:220px; max-width:280px;">             <h4 style="margin:0 0 6px 0; color:#FF9800;">                 [!] Septoria leaf spot             </h4>             <p style="margin:0; font-size:12px;"><b> Location:</b> 29.427000, 30.838276</p>             <p style="margin:0; font-size:12px;"><b>🎯 Confidence:</b> 99.9%</p>             <p style="margin:0; font-size:12px;"><b> Severity:</b> Medium</p>             <p style="margin:0; font-size:12px;"><b> Spread Risk:</b> Medium</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px; color:#555;">تبقع سبتوريا يسبب بقعاً دائرية صغيرة بحدود داكنة على الأوراق السفلية....</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px;"><b> Treatment:</b></p>             <p style="margin:0; font-size:11px; color:#333;">أزل الأوراق السفلية المصابة فور ظهور البقع. | رش مبيداً فطرياً يحتوي على كلوروثالونيل أو نحاس.</p>             <p style="margin:4px 0 0 0; font-size:10px; color:#aaa;"> 2026-05-03 00:49:22</p>         </div>         </div>`)[0];
+                popup_ca8f82fa1eefb37189dc3c8661cda0b1.setContent(html_2d379cb2484ec35bf61fa309893ccfda);
+            
+        
+
+        circle_marker_4e0c4617b4210606a7969f46d8328825.bindPopup(popup_ca8f82fa1eefb37189dc3c8661cda0b1)
+        ;
+
+        
+    
+    
+            circle_marker_4e0c4617b4210606a7969f46d8328825.bindTooltip(
+                `<div>
+                     Point 23: Septoria leaf spot (99.9%)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_4dc1f6b9b60cf0cf1ba0412602c503c9 = L.circleMarker(
+                [29.427, 30.838379],
+                {"bubblingMouseEvents": true, "color": "#FF9800", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF9800", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_3db1641c188161c6a172497a6801045d);
+        
+    
+        var popup_504d16904b4f4f787a81f1c061b67deb = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_492627f164de1c94b39cbb4503cde4c1 = $(`<div id="html_492627f164de1c94b39cbb4503cde4c1" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial; min-width:220px; max-width:280px;">             <h4 style="margin:0 0 6px 0; color:#FF9800;">                 [!] Septoria leaf spot             </h4>             <p style="margin:0; font-size:12px;"><b> Location:</b> 29.427000, 30.838379</p>             <p style="margin:0; font-size:12px;"><b>🎯 Confidence:</b> 99.9%</p>             <p style="margin:0; font-size:12px;"><b> Severity:</b> Medium</p>             <p style="margin:0; font-size:12px;"><b> Spread Risk:</b> Medium</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px; color:#555;">تبقع سبتوريا يسبب بقعاً دائرية صغيرة بحدود داكنة على الأوراق السفلية....</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px;"><b> Treatment:</b></p>             <p style="margin:0; font-size:11px; color:#333;">أزل الأوراق السفلية المصابة فور ظهور البقع. | رش مبيداً فطرياً يحتوي على كلوروثالونيل أو نحاس.</p>             <p style="margin:4px 0 0 0; font-size:10px; color:#aaa;"> 2026-05-03 00:49:22</p>         </div>         </div>`)[0];
+                popup_504d16904b4f4f787a81f1c061b67deb.setContent(html_492627f164de1c94b39cbb4503cde4c1);
+            
+        
+
+        circle_marker_4dc1f6b9b60cf0cf1ba0412602c503c9.bindPopup(popup_504d16904b4f4f787a81f1c061b67deb)
+        ;
+
+        
+    
+    
+            circle_marker_4dc1f6b9b60cf0cf1ba0412602c503c9.bindTooltip(
+                `<div>
+                     Point 24: Septoria leaf spot (99.9%)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_00e4705feb65911bed256a7ae9d085f4 = L.circleMarker(
+                [29.427, 30.838482],
+                {"bubblingMouseEvents": true, "color": "#B71C1C", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#B71C1C", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_3db1641c188161c6a172497a6801045d);
+        
+    
+        var popup_6456c959c7c3ddf665f2c5eebe6fb5f7 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_73535b8b37a8fd86dbf9f0d934061664 = $(`<div id="html_73535b8b37a8fd86dbf9f0d934061664" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial; min-width:220px; max-width:280px;">             <h4 style="margin:0 0 6px 0; color:#B71C1C;">                 [!] Late blight             </h4>             <p style="margin:0; font-size:12px;"><b> Location:</b> 29.427000, 30.838482</p>             <p style="margin:0; font-size:12px;"><b>🎯 Confidence:</b> 100.0%</p>             <p style="margin:0; font-size:12px;"><b> Severity:</b> Critical</p>             <p style="margin:0; font-size:12px;"><b> Spread Risk:</b> Very High</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px; color:#555;">اللفحة المتأخرة على البطاطس هي أشد الأمراض تدميراً — سببها نفس الممرض الذي أحدث المجاعة الأيرلندية....</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px;"><b> Treatment:</b></p>             <p style="margin:0; font-size:11px; color:#333;">تصرف فوراً — هذا المرض يمكن أن يدمر حقلاً بأكمله في أيام. | أزل جميع النباتات المصابة وأحرقها.</p>             <p style="margin:4px 0 0 0; font-size:10px; color:#aaa;"> 2026-05-03 00:49:22</p>         </div>         </div>`)[0];
+                popup_6456c959c7c3ddf665f2c5eebe6fb5f7.setContent(html_73535b8b37a8fd86dbf9f0d934061664);
+            
+        
+
+        circle_marker_00e4705feb65911bed256a7ae9d085f4.bindPopup(popup_6456c959c7c3ddf665f2c5eebe6fb5f7)
+        ;
+
+        
+    
+    
+            circle_marker_00e4705feb65911bed256a7ae9d085f4.bindTooltip(
+                `<div>
+                     Point 25: Late blight (100.0%)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_2a4946ca54a865c54f5e48b24007b832 = L.circleMarker(
+                [29.42709, 30.838482],
+                {"bubblingMouseEvents": true, "color": "#FF9800", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF9800", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_3db1641c188161c6a172497a6801045d);
+        
+    
+        var popup_ca726dae3bd20b03472688e9f7fcaf6f = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_5cac33efac178fc8c51ed7b54556c72b = $(`<div id="html_5cac33efac178fc8c51ed7b54556c72b" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial; min-width:220px; max-width:280px;">             <h4 style="margin:0 0 6px 0; color:#FF9800;">                 [!] Early blight             </h4>             <p style="margin:0; font-size:12px;"><b> Location:</b> 29.427090, 30.838482</p>             <p style="margin:0; font-size:12px;"><b>🎯 Confidence:</b> 96.1%</p>             <p style="margin:0; font-size:12px;"><b> Severity:</b> Medium</p>             <p style="margin:0; font-size:12px;"><b> Spread Risk:</b> High</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px; color:#555;">اللفحة المبكرة مرض فطري يسبب بقعاً بنية داكنة بحلقات صفراء على الأوراق....</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px;"><b> Treatment:</b></p>             <p style="margin:0; font-size:11px; color:#333;">قم بإزالة وإتلاف جميع الأوراق المصابة فوراً. | رش مبيد فطري نحاسي (مثل مزيج بوردو) كل 7-10 أيام.</p>             <p style="margin:4px 0 0 0; font-size:10px; color:#aaa;"> 2026-05-03 00:49:22</p>         </div>         </div>`)[0];
+                popup_ca726dae3bd20b03472688e9f7fcaf6f.setContent(html_5cac33efac178fc8c51ed7b54556c72b);
+            
+        
+
+        circle_marker_2a4946ca54a865c54f5e48b24007b832.bindPopup(popup_ca726dae3bd20b03472688e9f7fcaf6f)
+        ;
+
+        
+    
+    
+            circle_marker_2a4946ca54a865c54f5e48b24007b832.bindTooltip(
+                `<div>
+                     Point 26: Early blight (96.1%)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f515b0cb58cca04e5e14172064b36630 = L.circleMarker(
+                [29.42709, 30.838379],
+                {"bubblingMouseEvents": true, "color": "#FF9800", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF9800", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_3db1641c188161c6a172497a6801045d);
+        
+    
+        var popup_2bd35748f26ac9446c63fe0971e64502 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_d03e9fdaddaaaefe645f2ecbaa3e0e36 = $(`<div id="html_d03e9fdaddaaaefe645f2ecbaa3e0e36" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial; min-width:220px; max-width:280px;">             <h4 style="margin:0 0 6px 0; color:#FF9800;">                 [!] Septoria leaf spot             </h4>             <p style="margin:0; font-size:12px;"><b> Location:</b> 29.427090, 30.838379</p>             <p style="margin:0; font-size:12px;"><b>🎯 Confidence:</b> 92.6%</p>             <p style="margin:0; font-size:12px;"><b> Severity:</b> Medium</p>             <p style="margin:0; font-size:12px;"><b> Spread Risk:</b> Medium</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px; color:#555;">تبقع سبتوريا يسبب بقعاً دائرية صغيرة بحدود داكنة على الأوراق السفلية....</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px;"><b> Treatment:</b></p>             <p style="margin:0; font-size:11px; color:#333;">أزل الأوراق السفلية المصابة فور ظهور البقع. | رش مبيداً فطرياً يحتوي على كلوروثالونيل أو نحاس.</p>             <p style="margin:4px 0 0 0; font-size:10px; color:#aaa;"> 2026-05-03 00:49:22</p>         </div>         </div>`)[0];
+                popup_2bd35748f26ac9446c63fe0971e64502.setContent(html_d03e9fdaddaaaefe645f2ecbaa3e0e36);
+            
+        
+
+        circle_marker_f515b0cb58cca04e5e14172064b36630.bindPopup(popup_2bd35748f26ac9446c63fe0971e64502)
+        ;
+
+        
+    
+    
+            circle_marker_f515b0cb58cca04e5e14172064b36630.bindTooltip(
+                `<div>
+                     Point 27: Septoria leaf spot (92.6%)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ea325f8b85806170e9ddb2b6a10ab9e5 = L.circleMarker(
+                [29.42709, 30.838276],
+                {"bubblingMouseEvents": true, "color": "#FF9800", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF9800", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_3db1641c188161c6a172497a6801045d);
+        
+    
+        var popup_bf6d52d8b5999af95f5bed3f36dafac2 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_b6f03676536884ec2504108e3adf27ca = $(`<div id="html_b6f03676536884ec2504108e3adf27ca" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial; min-width:220px; max-width:280px;">             <h4 style="margin:0 0 6px 0; color:#FF9800;">                 [!] Early blight             </h4>             <p style="margin:0; font-size:12px;"><b> Location:</b> 29.427090, 30.838276</p>             <p style="margin:0; font-size:12px;"><b>🎯 Confidence:</b> 99.8%</p>             <p style="margin:0; font-size:12px;"><b> Severity:</b> Medium</p>             <p style="margin:0; font-size:12px;"><b> Spread Risk:</b> Medium</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px; color:#555;">اللفحة المبكرة على البطاطس تسبب بقعاً داكنة بحلقات متحدة المركز على الأوراق القديمة....</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px;"><b> Treatment:</b></p>             <p style="margin:0; font-size:11px; color:#333;">أزل الأوراق المصابة وتخلص منها بعناية. | رش مبيداً فطرياً (مانكوزيب أو كلوروثالونيل) كل 10-14 يوماً.</p>             <p style="margin:4px 0 0 0; font-size:10px; color:#aaa;"> 2026-05-03 00:49:22</p>         </div>         </div>`)[0];
+                popup_bf6d52d8b5999af95f5bed3f36dafac2.setContent(html_b6f03676536884ec2504108e3adf27ca);
+            
+        
+
+        circle_marker_ea325f8b85806170e9ddb2b6a10ab9e5.bindPopup(popup_bf6d52d8b5999af95f5bed3f36dafac2)
+        ;
+
+        
+    
+    
+            circle_marker_ea325f8b85806170e9ddb2b6a10ab9e5.bindTooltip(
+                `<div>
+                     Point 28: Early blight (99.8%)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_68e845463a9c5724271b6161ac1d8142 = L.circleMarker(
+                [29.42709, 30.838172],
+                {"bubblingMouseEvents": true, "color": "#FF9800", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF9800", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_3db1641c188161c6a172497a6801045d);
+        
+    
+        var popup_70d488d806fd64780594a055a1a3f69b = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_ef8fd102cc9e06e2e10e81e64e4423e7 = $(`<div id="html_ef8fd102cc9e06e2e10e81e64e4423e7" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial; min-width:220px; max-width:280px;">             <h4 style="margin:0 0 6px 0; color:#FF9800;">                 [!] Septoria leaf spot             </h4>             <p style="margin:0; font-size:12px;"><b> Location:</b> 29.427090, 30.838172</p>             <p style="margin:0; font-size:12px;"><b>🎯 Confidence:</b> 100.0%</p>             <p style="margin:0; font-size:12px;"><b> Severity:</b> Medium</p>             <p style="margin:0; font-size:12px;"><b> Spread Risk:</b> Medium</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px; color:#555;">تبقع سبتوريا يسبب بقعاً دائرية صغيرة بحدود داكنة على الأوراق السفلية....</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px;"><b> Treatment:</b></p>             <p style="margin:0; font-size:11px; color:#333;">أزل الأوراق السفلية المصابة فور ظهور البقع. | رش مبيداً فطرياً يحتوي على كلوروثالونيل أو نحاس.</p>             <p style="margin:4px 0 0 0; font-size:10px; color:#aaa;"> 2026-05-03 00:49:22</p>         </div>         </div>`)[0];
+                popup_70d488d806fd64780594a055a1a3f69b.setContent(html_ef8fd102cc9e06e2e10e81e64e4423e7);
+            
+        
+
+        circle_marker_68e845463a9c5724271b6161ac1d8142.bindPopup(popup_70d488d806fd64780594a055a1a3f69b)
+        ;
+
+        
+    
+    
+            circle_marker_68e845463a9c5724271b6161ac1d8142.bindTooltip(
+                `<div>
+                     Point 29: Septoria leaf spot (100.0%)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_38f72b436a4b099a25a33d084d2ed9c6 = L.circleMarker(
+                [29.42709, 30.838069],
+                {"bubblingMouseEvents": true, "color": "#F44336", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#F44336", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_3db1641c188161c6a172497a6801045d);
+        
+    
+        var popup_a512f3c0d4ff29e4d881f9847a4a2b7b = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_8ab4e02fb756e8de7ed89cebbe80f6d4 = $(`<div id="html_8ab4e02fb756e8de7ed89cebbe80f6d4" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial; min-width:220px; max-width:280px;">             <h4 style="margin:0 0 6px 0; color:#F44336;">                 [!] Tomato Yellow Leaf Curl Virus             </h4>             <p style="margin:0; font-size:12px;"><b> Location:</b> 29.427090, 30.838069</p>             <p style="margin:0; font-size:12px;"><b>🎯 Confidence:</b> 100.0%</p>             <p style="margin:0; font-size:12px;"><b> Severity:</b> High</p>             <p style="margin:0; font-size:12px;"><b> Spread Risk:</b> High</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px; color:#555;">فيروس تجعد وصفار أوراق الطماطم ينتشر عن طريق الذباب الأبيض ويسبب تجعد الأوراق واصفرارها....</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px;"><b> Treatment:</b></p>             <p style="margin:0; font-size:11px; color:#333;">لا يوجد علاج — أزل النباتات المصابة وأتلفها فوراً. | تحكم في أعداد الذباب الأبيض باستخدام مصائد لاصقة صفراء.</p>             <p style="margin:4px 0 0 0; font-size:10px; color:#aaa;"> 2026-05-03 00:49:23</p>         </div>         </div>`)[0];
+                popup_a512f3c0d4ff29e4d881f9847a4a2b7b.setContent(html_8ab4e02fb756e8de7ed89cebbe80f6d4);
+            
+        
+
+        circle_marker_38f72b436a4b099a25a33d084d2ed9c6.bindPopup(popup_a512f3c0d4ff29e4d881f9847a4a2b7b)
+        ;
+
+        
+    
+    
+            circle_marker_38f72b436a4b099a25a33d084d2ed9c6.bindTooltip(
+                `<div>
+                     Point 30: Tomato Yellow Leaf Curl Virus (100.0%)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_135716fe9f679df922cc074a3a08918b = L.circleMarker(
+                [29.42709, 30.837965],
+                {"bubblingMouseEvents": true, "color": "#F44336", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#F44336", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_3db1641c188161c6a172497a6801045d);
+        
+    
+        var popup_b999fb6be92ff39c99ea27e07c510254 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_df0d79ada229a8a67a920b7717ebd299 = $(`<div id="html_df0d79ada229a8a67a920b7717ebd299" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial; min-width:220px; max-width:280px;">             <h4 style="margin:0 0 6px 0; color:#F44336;">                 [!] Tomato Yellow Leaf Curl Virus             </h4>             <p style="margin:0; font-size:12px;"><b> Location:</b> 29.427090, 30.837965</p>             <p style="margin:0; font-size:12px;"><b>🎯 Confidence:</b> 100.0%</p>             <p style="margin:0; font-size:12px;"><b> Severity:</b> High</p>             <p style="margin:0; font-size:12px;"><b> Spread Risk:</b> High</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px; color:#555;">فيروس تجعد وصفار أوراق الطماطم ينتشر عن طريق الذباب الأبيض ويسبب تجعد الأوراق واصفرارها....</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px;"><b> Treatment:</b></p>             <p style="margin:0; font-size:11px; color:#333;">لا يوجد علاج — أزل النباتات المصابة وأتلفها فوراً. | تحكم في أعداد الذباب الأبيض باستخدام مصائد لاصقة صفراء.</p>             <p style="margin:4px 0 0 0; font-size:10px; color:#aaa;"> 2026-05-03 00:49:23</p>         </div>         </div>`)[0];
+                popup_b999fb6be92ff39c99ea27e07c510254.setContent(html_df0d79ada229a8a67a920b7717ebd299);
+            
+        
+
+        circle_marker_135716fe9f679df922cc074a3a08918b.bindPopup(popup_b999fb6be92ff39c99ea27e07c510254)
+        ;
+
+        
+    
+    
+            circle_marker_135716fe9f679df922cc074a3a08918b.bindTooltip(
+                `<div>
+                     Point 31: Tomato Yellow Leaf Curl Virus (100.0%)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_b3949eebde45fe93eb74bbe88ad38577 = L.circleMarker(
+                [29.42709, 30.837862],
+                {"bubblingMouseEvents": true, "color": "#F44336", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#F44336", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_3db1641c188161c6a172497a6801045d);
+        
+    
+        var popup_5d48e851b03ec43082a04c61fba207d0 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_cee3229ba738a4e90d1810494425a1bc = $(`<div id="html_cee3229ba738a4e90d1810494425a1bc" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial; min-width:220px; max-width:280px;">             <h4 style="margin:0 0 6px 0; color:#F44336;">                 [!] Late blight             </h4>             <p style="margin:0; font-size:12px;"><b> Location:</b> 29.427090, 30.837862</p>             <p style="margin:0; font-size:12px;"><b>🎯 Confidence:</b> 100.0%</p>             <p style="margin:0; font-size:12px;"><b> Severity:</b> High</p>             <p style="margin:0; font-size:12px;"><b> Spread Risk:</b> Very High</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px; color:#555;">اللفحة المتأخرة مرض فطري سريع الانتشار يسبب آفات داكنة مشبعة بالماء....</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px;"><b> Treatment:</b></p>             <p style="margin:0; font-size:11px; color:#333;">تصرف فوراً — اللفحة المتأخرة تنتشر بسرعة شديدة. | أزل جميع أجزاء النبات المصابة وأحرقها (لا تضعها في السماد).</p>             <p style="margin:4px 0 0 0; font-size:10px; color:#aaa;"> 2026-05-03 00:49:23</p>         </div>         </div>`)[0];
+                popup_5d48e851b03ec43082a04c61fba207d0.setContent(html_cee3229ba738a4e90d1810494425a1bc);
+            
+        
+
+        circle_marker_b3949eebde45fe93eb74bbe88ad38577.bindPopup(popup_5d48e851b03ec43082a04c61fba207d0)
+        ;
+
+        
+    
+    
+            circle_marker_b3949eebde45fe93eb74bbe88ad38577.bindTooltip(
+                `<div>
+                     Point 32: Late blight (100.0%)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_460f748572df7ee20389efebd9cc66ca = L.circleMarker(
+                [29.42709, 30.837758],
+                {"bubblingMouseEvents": true, "color": "#B71C1C", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#B71C1C", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_3db1641c188161c6a172497a6801045d);
+        
+    
+        var popup_66990335555f7e4b2191d682a3f620b6 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_1480f0e9b4b6a000ce089e3793ea4196 = $(`<div id="html_1480f0e9b4b6a000ce089e3793ea4196" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial; min-width:220px; max-width:280px;">             <h4 style="margin:0 0 6px 0; color:#B71C1C;">                 [!] Late blight             </h4>             <p style="margin:0; font-size:12px;"><b> Location:</b> 29.427090, 30.837758</p>             <p style="margin:0; font-size:12px;"><b>🎯 Confidence:</b> 99.9%</p>             <p style="margin:0; font-size:12px;"><b> Severity:</b> Critical</p>             <p style="margin:0; font-size:12px;"><b> Spread Risk:</b> Very High</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px; color:#555;">اللفحة المتأخرة على البطاطس هي أشد الأمراض تدميراً — سببها نفس الممرض الذي أحدث المجاعة الأيرلندية....</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px;"><b> Treatment:</b></p>             <p style="margin:0; font-size:11px; color:#333;">تصرف فوراً — هذا المرض يمكن أن يدمر حقلاً بأكمله في أيام. | أزل جميع النباتات المصابة وأحرقها.</p>             <p style="margin:4px 0 0 0; font-size:10px; color:#aaa;"> 2026-05-03 00:49:23</p>         </div>         </div>`)[0];
+                popup_66990335555f7e4b2191d682a3f620b6.setContent(html_1480f0e9b4b6a000ce089e3793ea4196);
+            
+        
+
+        circle_marker_460f748572df7ee20389efebd9cc66ca.bindPopup(popup_66990335555f7e4b2191d682a3f620b6)
+        ;
+
+        
+    
+    
+            circle_marker_460f748572df7ee20389efebd9cc66ca.bindTooltip(
+                `<div>
+                     Point 33: Late blight (99.9%)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_a15f6fe5709292a9b8e2794d4ff2a37f = L.circleMarker(
+                [29.42709, 30.837655],
+                {"bubblingMouseEvents": true, "color": "#FF9800", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF9800", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_3db1641c188161c6a172497a6801045d);
+        
+    
+        var popup_a9be780f404cdc9ff0b8a64b92a2e715 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_f098cc7d45172f8346c84cf2212acd72 = $(`<div id="html_f098cc7d45172f8346c84cf2212acd72" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial; min-width:220px; max-width:280px;">             <h4 style="margin:0 0 6px 0; color:#FF9800;">                 [!] Septoria leaf spot             </h4>             <p style="margin:0; font-size:12px;"><b> Location:</b> 29.427090, 30.837655</p>             <p style="margin:0; font-size:12px;"><b>🎯 Confidence:</b> 100.0%</p>             <p style="margin:0; font-size:12px;"><b> Severity:</b> Medium</p>             <p style="margin:0; font-size:12px;"><b> Spread Risk:</b> Medium</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px; color:#555;">تبقع سبتوريا يسبب بقعاً دائرية صغيرة بحدود داكنة على الأوراق السفلية....</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px;"><b> Treatment:</b></p>             <p style="margin:0; font-size:11px; color:#333;">أزل الأوراق السفلية المصابة فور ظهور البقع. | رش مبيداً فطرياً يحتوي على كلوروثالونيل أو نحاس.</p>             <p style="margin:4px 0 0 0; font-size:10px; color:#aaa;"> 2026-05-03 00:49:23</p>         </div>         </div>`)[0];
+                popup_a9be780f404cdc9ff0b8a64b92a2e715.setContent(html_f098cc7d45172f8346c84cf2212acd72);
+            
+        
+
+        circle_marker_a15f6fe5709292a9b8e2794d4ff2a37f.bindPopup(popup_a9be780f404cdc9ff0b8a64b92a2e715)
+        ;
+
+        
+    
+    
+            circle_marker_a15f6fe5709292a9b8e2794d4ff2a37f.bindTooltip(
+                `<div>
+                     Point 34: Septoria leaf spot (100.0%)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_448cf787b1974445843c52671e8ca7c2 = L.circleMarker(
+                [29.42709, 30.837552],
+                {"bubblingMouseEvents": true, "color": "#FF9800", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF9800", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_3db1641c188161c6a172497a6801045d);
+        
+    
+        var popup_186b8b46cd7a7a678cd0dc3ffa36c7ad = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_4b5e5cb96557ab1b20c2c9ed02132c6a = $(`<div id="html_4b5e5cb96557ab1b20c2c9ed02132c6a" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial; min-width:220px; max-width:280px;">             <h4 style="margin:0 0 6px 0; color:#FF9800;">                 [!] Early blight             </h4>             <p style="margin:0; font-size:12px;"><b> Location:</b> 29.427090, 30.837552</p>             <p style="margin:0; font-size:12px;"><b>🎯 Confidence:</b> 100.0%</p>             <p style="margin:0; font-size:12px;"><b> Severity:</b> Medium</p>             <p style="margin:0; font-size:12px;"><b> Spread Risk:</b> Medium</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px; color:#555;">اللفحة المبكرة على البطاطس تسبب بقعاً داكنة بحلقات متحدة المركز على الأوراق القديمة....</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px;"><b> Treatment:</b></p>             <p style="margin:0; font-size:11px; color:#333;">أزل الأوراق المصابة وتخلص منها بعناية. | رش مبيداً فطرياً (مانكوزيب أو كلوروثالونيل) كل 10-14 يوماً.</p>             <p style="margin:4px 0 0 0; font-size:10px; color:#aaa;"> 2026-05-03 00:49:23</p>         </div>         </div>`)[0];
+                popup_186b8b46cd7a7a678cd0dc3ffa36c7ad.setContent(html_4b5e5cb96557ab1b20c2c9ed02132c6a);
+            
+        
+
+        circle_marker_448cf787b1974445843c52671e8ca7c2.bindPopup(popup_186b8b46cd7a7a678cd0dc3ffa36c7ad)
+        ;
+
+        
+    
+    
+            circle_marker_448cf787b1974445843c52671e8ca7c2.bindTooltip(
+                `<div>
+                     Point 35: Early blight (100.0%)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_66addf45e98c22840e96dece2c0692bc = L.circleMarker(
+                [29.42709, 30.837448],
+                {"bubblingMouseEvents": true, "color": "#B71C1C", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#B71C1C", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_3db1641c188161c6a172497a6801045d);
+        
+    
+        var popup_576a966f6d6727535fabeb82afc074e1 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_89201934005ad03b8d82e04385aeb200 = $(`<div id="html_89201934005ad03b8d82e04385aeb200" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial; min-width:220px; max-width:280px;">             <h4 style="margin:0 0 6px 0; color:#B71C1C;">                 [!] Late blight             </h4>             <p style="margin:0; font-size:12px;"><b> Location:</b> 29.427090, 30.837448</p>             <p style="margin:0; font-size:12px;"><b>🎯 Confidence:</b> 99.9%</p>             <p style="margin:0; font-size:12px;"><b> Severity:</b> Critical</p>             <p style="margin:0; font-size:12px;"><b> Spread Risk:</b> Very High</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px; color:#555;">اللفحة المتأخرة على البطاطس هي أشد الأمراض تدميراً — سببها نفس الممرض الذي أحدث المجاعة الأيرلندية....</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px;"><b> Treatment:</b></p>             <p style="margin:0; font-size:11px; color:#333;">تصرف فوراً — هذا المرض يمكن أن يدمر حقلاً بأكمله في أيام. | أزل جميع النباتات المصابة وأحرقها.</p>             <p style="margin:4px 0 0 0; font-size:10px; color:#aaa;"> 2026-05-03 00:49:23</p>         </div>         </div>`)[0];
+                popup_576a966f6d6727535fabeb82afc074e1.setContent(html_89201934005ad03b8d82e04385aeb200);
+            
+        
+
+        circle_marker_66addf45e98c22840e96dece2c0692bc.bindPopup(popup_576a966f6d6727535fabeb82afc074e1)
+        ;
+
+        
+    
+    
+            circle_marker_66addf45e98c22840e96dece2c0692bc.bindTooltip(
+                `<div>
+                     Point 36: Late blight (99.9%)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_bf6d5b38575e5481c575a484175825b6 = L.circleMarker(
+                [29.42709, 30.837345],
+                {"bubblingMouseEvents": true, "color": "#FF9800", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF9800", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_3db1641c188161c6a172497a6801045d);
+        
+    
+        var popup_befa82d0377738dc261d8b415d81d68e = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_ab5870f26ec991ea3a1fda33e109af82 = $(`<div id="html_ab5870f26ec991ea3a1fda33e109af82" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial; min-width:220px; max-width:280px;">             <h4 style="margin:0 0 6px 0; color:#FF9800;">                 [!] Early blight             </h4>             <p style="margin:0; font-size:12px;"><b> Location:</b> 29.427090, 30.837345</p>             <p style="margin:0; font-size:12px;"><b>🎯 Confidence:</b> 99.1%</p>             <p style="margin:0; font-size:12px;"><b> Severity:</b> Medium</p>             <p style="margin:0; font-size:12px;"><b> Spread Risk:</b> Medium</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px; color:#555;">اللفحة المبكرة على البطاطس تسبب بقعاً داكنة بحلقات متحدة المركز على الأوراق القديمة....</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px;"><b> Treatment:</b></p>             <p style="margin:0; font-size:11px; color:#333;">أزل الأوراق المصابة وتخلص منها بعناية. | رش مبيداً فطرياً (مانكوزيب أو كلوروثالونيل) كل 10-14 يوماً.</p>             <p style="margin:4px 0 0 0; font-size:10px; color:#aaa;"> 2026-05-03 00:49:23</p>         </div>         </div>`)[0];
+                popup_befa82d0377738dc261d8b415d81d68e.setContent(html_ab5870f26ec991ea3a1fda33e109af82);
+            
+        
+
+        circle_marker_bf6d5b38575e5481c575a484175825b6.bindPopup(popup_befa82d0377738dc261d8b415d81d68e)
+        ;
+
+        
+    
+    
+            circle_marker_bf6d5b38575e5481c575a484175825b6.bindTooltip(
+                `<div>
+                     Point 37: Early blight (99.1%)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e08262a1e8b6ad335ee240e712a0e86d = L.circleMarker(
+                [29.42709, 30.837241],
+                {"bubblingMouseEvents": true, "color": "#FF9800", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF9800", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_3db1641c188161c6a172497a6801045d);
+        
+    
+        var popup_444c2b882622758a4ef8d7ce72a552ee = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_ae4ebb245352a3f3de02002fb53dc6eb = $(`<div id="html_ae4ebb245352a3f3de02002fb53dc6eb" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial; min-width:220px; max-width:280px;">             <h4 style="margin:0 0 6px 0; color:#FF9800;">                 [!] Septoria leaf spot             </h4>             <p style="margin:0; font-size:12px;"><b> Location:</b> 29.427090, 30.837241</p>             <p style="margin:0; font-size:12px;"><b>🎯 Confidence:</b> 95.4%</p>             <p style="margin:0; font-size:12px;"><b> Severity:</b> Medium</p>             <p style="margin:0; font-size:12px;"><b> Spread Risk:</b> Medium</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px; color:#555;">تبقع سبتوريا يسبب بقعاً دائرية صغيرة بحدود داكنة على الأوراق السفلية....</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px;"><b> Treatment:</b></p>             <p style="margin:0; font-size:11px; color:#333;">أزل الأوراق السفلية المصابة فور ظهور البقع. | رش مبيداً فطرياً يحتوي على كلوروثالونيل أو نحاس.</p>             <p style="margin:4px 0 0 0; font-size:10px; color:#aaa;"> 2026-05-03 00:49:23</p>         </div>         </div>`)[0];
+                popup_444c2b882622758a4ef8d7ce72a552ee.setContent(html_ae4ebb245352a3f3de02002fb53dc6eb);
+            
+        
+
+        circle_marker_e08262a1e8b6ad335ee240e712a0e86d.bindPopup(popup_444c2b882622758a4ef8d7ce72a552ee)
+        ;
+
+        
+    
+    
+            circle_marker_e08262a1e8b6ad335ee240e712a0e86d.bindTooltip(
+                `<div>
+                     Point 38: Septoria leaf spot (95.4%)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f2fe652f31fae6dcc5480cd12c1b37d5 = L.circleMarker(
+                [29.42709, 30.837138],
+                {"bubblingMouseEvents": true, "color": "#4CAF50", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#4CAF50", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_3db1641c188161c6a172497a6801045d);
+        
+    
+        var popup_aa6bb036b3e383318f52499a70bc6d5e = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_b53e2e57d0242e6a3b09312af54b5833 = $(`<div id="html_b53e2e57d0242e6a3b09312af54b5833" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial; min-width:220px; max-width:280px;">             <h4 style="margin:0 0 6px 0; color:#4CAF50;">                 [OK] healthy             </h4>             <p style="margin:0; font-size:12px;"><b> Location:</b> 29.427090, 30.837138</p>             <p style="margin:0; font-size:12px;"><b>🎯 Confidence:</b> 100.0%</p>             <p style="margin:0; font-size:12px;"><b> Severity:</b> None</p>             <p style="margin:0; font-size:12px;"><b> Spread Risk:</b> None</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px; color:#555;">هذا النبات سليم. لم يتم اكتشاف أي مرض....</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px;"><b> Treatment:</b></p>             <p style="margin:0; font-size:11px; color:#333;">استمر في جدول الري والتسميد المنتظم. | راقب أسبوعياً للكشف المبكر عن علامات الأمراض.</p>             <p style="margin:4px 0 0 0; font-size:10px; color:#aaa;"> 2026-05-03 00:49:24</p>         </div>         </div>`)[0];
+                popup_aa6bb036b3e383318f52499a70bc6d5e.setContent(html_b53e2e57d0242e6a3b09312af54b5833);
+            
+        
+
+        circle_marker_f2fe652f31fae6dcc5480cd12c1b37d5.bindPopup(popup_aa6bb036b3e383318f52499a70bc6d5e)
+        ;
+
+        
+    
+    
+            circle_marker_f2fe652f31fae6dcc5480cd12c1b37d5.bindTooltip(
+                `<div>
+                     Point 39: healthy (100.0%)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_1c969119f110c30b92180d9124eb1888 = L.circleMarker(
+                [29.42709, 30.837034],
+                {"bubblingMouseEvents": true, "color": "#FF9800", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF9800", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_3db1641c188161c6a172497a6801045d);
+        
+    
+        var popup_519c98ba42584efa7b105d89f6799a60 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_c98949b4a0e97026953db6e0878207f3 = $(`<div id="html_c98949b4a0e97026953db6e0878207f3" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial; min-width:220px; max-width:280px;">             <h4 style="margin:0 0 6px 0; color:#FF9800;">                 [!] Early blight             </h4>             <p style="margin:0; font-size:12px;"><b> Location:</b> 29.427090, 30.837034</p>             <p style="margin:0; font-size:12px;"><b>🎯 Confidence:</b> 100.0%</p>             <p style="margin:0; font-size:12px;"><b> Severity:</b> Medium</p>             <p style="margin:0; font-size:12px;"><b> Spread Risk:</b> Medium</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px; color:#555;">اللفحة المبكرة على البطاطس تسبب بقعاً داكنة بحلقات متحدة المركز على الأوراق القديمة....</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px;"><b> Treatment:</b></p>             <p style="margin:0; font-size:11px; color:#333;">أزل الأوراق المصابة وتخلص منها بعناية. | رش مبيداً فطرياً (مانكوزيب أو كلوروثالونيل) كل 10-14 يوماً.</p>             <p style="margin:4px 0 0 0; font-size:10px; color:#aaa;"> 2026-05-03 00:49:24</p>         </div>         </div>`)[0];
+                popup_519c98ba42584efa7b105d89f6799a60.setContent(html_c98949b4a0e97026953db6e0878207f3);
+            
+        
+
+        circle_marker_1c969119f110c30b92180d9124eb1888.bindPopup(popup_519c98ba42584efa7b105d89f6799a60)
+        ;
+
+        
+    
+    
+            circle_marker_1c969119f110c30b92180d9124eb1888.bindTooltip(
+                `<div>
+                     Point 40: Early blight (100.0%)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_26cfd0ebb9c2ccbc9622488b92493fcf = L.circleMarker(
+                [29.42709, 30.836931],
+                {"bubblingMouseEvents": true, "color": "#F44336", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#F44336", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_3db1641c188161c6a172497a6801045d);
+        
+    
+        var popup_640e4f593d10b6a7e3edbf441a2bd02b = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_f8b155e67adf8e1b18473771ef65578d = $(`<div id="html_f8b155e67adf8e1b18473771ef65578d" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial; min-width:220px; max-width:280px;">             <h4 style="margin:0 0 6px 0; color:#F44336;">                 [!] Late blight             </h4>             <p style="margin:0; font-size:12px;"><b> Location:</b> 29.427090, 30.836931</p>             <p style="margin:0; font-size:12px;"><b>🎯 Confidence:</b> 99.9%</p>             <p style="margin:0; font-size:12px;"><b> Severity:</b> High</p>             <p style="margin:0; font-size:12px;"><b> Spread Risk:</b> Very High</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px; color:#555;">اللفحة المتأخرة مرض فطري سريع الانتشار يسبب آفات داكنة مشبعة بالماء....</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px;"><b> Treatment:</b></p>             <p style="margin:0; font-size:11px; color:#333;">تصرف فوراً — اللفحة المتأخرة تنتشر بسرعة شديدة. | أزل جميع أجزاء النبات المصابة وأحرقها (لا تضعها في السماد).</p>             <p style="margin:4px 0 0 0; font-size:10px; color:#aaa;"> 2026-05-03 00:49:24</p>         </div>         </div>`)[0];
+                popup_640e4f593d10b6a7e3edbf441a2bd02b.setContent(html_f8b155e67adf8e1b18473771ef65578d);
+            
+        
+
+        circle_marker_26cfd0ebb9c2ccbc9622488b92493fcf.bindPopup(popup_640e4f593d10b6a7e3edbf441a2bd02b)
+        ;
+
+        
+    
+    
+            circle_marker_26cfd0ebb9c2ccbc9622488b92493fcf.bindTooltip(
+                `<div>
+                     Point 41: Late blight (99.9%)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_5babedab3519a1e277735e379d76803d = L.circleMarker(
+                [29.42709, 30.836827],
+                {"bubblingMouseEvents": true, "color": "#F44336", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#F44336", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_3db1641c188161c6a172497a6801045d);
+        
+    
+        var popup_4b1f665406166a4cd8ce344910209008 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_d15ce4ece7046ea924220b906eaa9c34 = $(`<div id="html_d15ce4ece7046ea924220b906eaa9c34" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial; min-width:220px; max-width:280px;">             <h4 style="margin:0 0 6px 0; color:#F44336;">                 [!] Late blight             </h4>             <p style="margin:0; font-size:12px;"><b> Location:</b> 29.427090, 30.836827</p>             <p style="margin:0; font-size:12px;"><b>🎯 Confidence:</b> 100.0%</p>             <p style="margin:0; font-size:12px;"><b> Severity:</b> High</p>             <p style="margin:0; font-size:12px;"><b> Spread Risk:</b> Very High</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px; color:#555;">اللفحة المتأخرة مرض فطري سريع الانتشار يسبب آفات داكنة مشبعة بالماء....</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px;"><b> Treatment:</b></p>             <p style="margin:0; font-size:11px; color:#333;">تصرف فوراً — اللفحة المتأخرة تنتشر بسرعة شديدة. | أزل جميع أجزاء النبات المصابة وأحرقها (لا تضعها في السماد).</p>             <p style="margin:4px 0 0 0; font-size:10px; color:#aaa;"> 2026-05-03 00:49:24</p>         </div>         </div>`)[0];
+                popup_4b1f665406166a4cd8ce344910209008.setContent(html_d15ce4ece7046ea924220b906eaa9c34);
+            
+        
+
+        circle_marker_5babedab3519a1e277735e379d76803d.bindPopup(popup_4b1f665406166a4cd8ce344910209008)
+        ;
+
+        
+    
+    
+            circle_marker_5babedab3519a1e277735e379d76803d.bindTooltip(
+                `<div>
+                     Point 42: Late blight (100.0%)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_71c84c975e552800485dd25c3b2eb49d = L.circleMarker(
+                [29.42709, 30.836724],
+                {"bubblingMouseEvents": true, "color": "#F44336", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#F44336", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_3db1641c188161c6a172497a6801045d);
+        
+    
+        var popup_3bdd289637abdb751a84edc22d8b4e78 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_00a7c0ed5019e8fe8f63096f517f18f5 = $(`<div id="html_00a7c0ed5019e8fe8f63096f517f18f5" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial; min-width:220px; max-width:280px;">             <h4 style="margin:0 0 6px 0; color:#F44336;">                 [!] Late blight             </h4>             <p style="margin:0; font-size:12px;"><b> Location:</b> 29.427090, 30.836724</p>             <p style="margin:0; font-size:12px;"><b>🎯 Confidence:</b> 99.9%</p>             <p style="margin:0; font-size:12px;"><b> Severity:</b> High</p>             <p style="margin:0; font-size:12px;"><b> Spread Risk:</b> Very High</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px; color:#555;">اللفحة المتأخرة مرض فطري سريع الانتشار يسبب آفات داكنة مشبعة بالماء....</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px;"><b> Treatment:</b></p>             <p style="margin:0; font-size:11px; color:#333;">تصرف فوراً — اللفحة المتأخرة تنتشر بسرعة شديدة. | أزل جميع أجزاء النبات المصابة وأحرقها (لا تضعها في السماد).</p>             <p style="margin:4px 0 0 0; font-size:10px; color:#aaa;"> 2026-05-03 00:49:24</p>         </div>         </div>`)[0];
+                popup_3bdd289637abdb751a84edc22d8b4e78.setContent(html_00a7c0ed5019e8fe8f63096f517f18f5);
+            
+        
+
+        circle_marker_71c84c975e552800485dd25c3b2eb49d.bindPopup(popup_3bdd289637abdb751a84edc22d8b4e78)
+        ;
+
+        
+    
+    
+            circle_marker_71c84c975e552800485dd25c3b2eb49d.bindTooltip(
+                `<div>
+                     Point 43: Late blight (99.9%)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_665706df93789fa27668db056b3cbc63 = L.circleMarker(
+                [29.42709, 30.836621],
+                {"bubblingMouseEvents": true, "color": "#B71C1C", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#B71C1C", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_3db1641c188161c6a172497a6801045d);
+        
+    
+        var popup_6f7d3561fdd9f0a06389c163250ec4d3 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_fb8898d2b9bc46c7e860273cf7e0c65c = $(`<div id="html_fb8898d2b9bc46c7e860273cf7e0c65c" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial; min-width:220px; max-width:280px;">             <h4 style="margin:0 0 6px 0; color:#B71C1C;">                 [!] Late blight             </h4>             <p style="margin:0; font-size:12px;"><b> Location:</b> 29.427090, 30.836621</p>             <p style="margin:0; font-size:12px;"><b>🎯 Confidence:</b> 100.0%</p>             <p style="margin:0; font-size:12px;"><b> Severity:</b> Critical</p>             <p style="margin:0; font-size:12px;"><b> Spread Risk:</b> Very High</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px; color:#555;">اللفحة المتأخرة على البطاطس هي أشد الأمراض تدميراً — سببها نفس الممرض الذي أحدث المجاعة الأيرلندية....</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px;"><b> Treatment:</b></p>             <p style="margin:0; font-size:11px; color:#333;">تصرف فوراً — هذا المرض يمكن أن يدمر حقلاً بأكمله في أيام. | أزل جميع النباتات المصابة وأحرقها.</p>             <p style="margin:4px 0 0 0; font-size:10px; color:#aaa;"> 2026-05-03 00:49:24</p>         </div>         </div>`)[0];
+                popup_6f7d3561fdd9f0a06389c163250ec4d3.setContent(html_fb8898d2b9bc46c7e860273cf7e0c65c);
+            
+        
+
+        circle_marker_665706df93789fa27668db056b3cbc63.bindPopup(popup_6f7d3561fdd9f0a06389c163250ec4d3)
+        ;
+
+        
+    
+    
+            circle_marker_665706df93789fa27668db056b3cbc63.bindTooltip(
+                `<div>
+                     Point 44: Late blight (100.0%)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_d332b9d2c7b72a5329a4c464c240c863 = L.circleMarker(
+                [29.42709, 30.836517],
+                {"bubblingMouseEvents": true, "color": "#FF9800", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF9800", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_3db1641c188161c6a172497a6801045d);
+        
+    
+        var popup_b453a5b4c675020fb3d5c73b89b9cf3b = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_fdfccc233ace2a8a36748c50ae5ed4a5 = $(`<div id="html_fdfccc233ace2a8a36748c50ae5ed4a5" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial; min-width:220px; max-width:280px;">             <h4 style="margin:0 0 6px 0; color:#FF9800;">                 [!] Septoria leaf spot             </h4>             <p style="margin:0; font-size:12px;"><b> Location:</b> 29.427090, 30.836517</p>             <p style="margin:0; font-size:12px;"><b>🎯 Confidence:</b> 59.5%</p>             <p style="margin:0; font-size:12px;"><b> Severity:</b> Medium</p>             <p style="margin:0; font-size:12px;"><b> Spread Risk:</b> Medium</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px; color:#555;">تبقع سبتوريا يسبب بقعاً دائرية صغيرة بحدود داكنة على الأوراق السفلية....</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px;"><b> Treatment:</b></p>             <p style="margin:0; font-size:11px; color:#333;">أزل الأوراق السفلية المصابة فور ظهور البقع. | رش مبيداً فطرياً يحتوي على كلوروثالونيل أو نحاس.</p>             <p style="margin:4px 0 0 0; font-size:10px; color:#aaa;"> 2026-05-03 00:49:24</p>         </div>         </div>`)[0];
+                popup_b453a5b4c675020fb3d5c73b89b9cf3b.setContent(html_fdfccc233ace2a8a36748c50ae5ed4a5);
+            
+        
+
+        circle_marker_d332b9d2c7b72a5329a4c464c240c863.bindPopup(popup_b453a5b4c675020fb3d5c73b89b9cf3b)
+        ;
+
+        
+    
+    
+            circle_marker_d332b9d2c7b72a5329a4c464c240c863.bindTooltip(
+                `<div>
+                     Point 45: Septoria leaf spot (59.5%)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_10f3d6401da65712d838c6fd12789fd3 = L.circleMarker(
+                [29.42709, 30.836414],
+                {"bubblingMouseEvents": true, "color": "#FF9800", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF9800", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_3db1641c188161c6a172497a6801045d);
+        
+    
+        var popup_98cf3d91ecf56af6098bd1a5d4ffe565 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_e60ec0d13d4562e855cfa771b073b5e3 = $(`<div id="html_e60ec0d13d4562e855cfa771b073b5e3" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial; min-width:220px; max-width:280px;">             <h4 style="margin:0 0 6px 0; color:#FF9800;">                 [!] Early blight             </h4>             <p style="margin:0; font-size:12px;"><b> Location:</b> 29.427090, 30.836414</p>             <p style="margin:0; font-size:12px;"><b>🎯 Confidence:</b> 79.7%</p>             <p style="margin:0; font-size:12px;"><b> Severity:</b> Medium</p>             <p style="margin:0; font-size:12px;"><b> Spread Risk:</b> High</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px; color:#555;">اللفحة المبكرة مرض فطري يسبب بقعاً بنية داكنة بحلقات صفراء على الأوراق....</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px;"><b> Treatment:</b></p>             <p style="margin:0; font-size:11px; color:#333;">قم بإزالة وإتلاف جميع الأوراق المصابة فوراً. | رش مبيد فطري نحاسي (مثل مزيج بوردو) كل 7-10 أيام.</p>             <p style="margin:4px 0 0 0; font-size:10px; color:#aaa;"> 2026-05-03 00:49:24</p>         </div>         </div>`)[0];
+                popup_98cf3d91ecf56af6098bd1a5d4ffe565.setContent(html_e60ec0d13d4562e855cfa771b073b5e3);
+            
+        
+
+        circle_marker_10f3d6401da65712d838c6fd12789fd3.bindPopup(popup_98cf3d91ecf56af6098bd1a5d4ffe565)
+        ;
+
+        
+    
+    
+            circle_marker_10f3d6401da65712d838c6fd12789fd3.bindTooltip(
+                `<div>
+                     Point 46: Early blight (79.7%)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ebeb728334a77cc9ac52cef68e05ef46 = L.circleMarker(
+                [29.42709, 30.83631],
+                {"bubblingMouseEvents": true, "color": "#F44336", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#F44336", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_3db1641c188161c6a172497a6801045d);
+        
+    
+        var popup_ee187d57c56d4a207916ebad56fe1cc3 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_f94a4b18b106c5a3bac2c1560fbcfe4b = $(`<div id="html_f94a4b18b106c5a3bac2c1560fbcfe4b" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial; min-width:220px; max-width:280px;">             <h4 style="margin:0 0 6px 0; color:#F44336;">                 [!] Late blight             </h4>             <p style="margin:0; font-size:12px;"><b> Location:</b> 29.427090, 30.836310</p>             <p style="margin:0; font-size:12px;"><b>🎯 Confidence:</b> 66.7%</p>             <p style="margin:0; font-size:12px;"><b> Severity:</b> High</p>             <p style="margin:0; font-size:12px;"><b> Spread Risk:</b> Very High</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px; color:#555;">اللفحة المتأخرة مرض فطري سريع الانتشار يسبب آفات داكنة مشبعة بالماء....</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px;"><b> Treatment:</b></p>             <p style="margin:0; font-size:11px; color:#333;">تصرف فوراً — اللفحة المتأخرة تنتشر بسرعة شديدة. | أزل جميع أجزاء النبات المصابة وأحرقها (لا تضعها في السماد).</p>             <p style="margin:4px 0 0 0; font-size:10px; color:#aaa;"> 2026-05-03 00:49:24</p>         </div>         </div>`)[0];
+                popup_ee187d57c56d4a207916ebad56fe1cc3.setContent(html_f94a4b18b106c5a3bac2c1560fbcfe4b);
+            
+        
+
+        circle_marker_ebeb728334a77cc9ac52cef68e05ef46.bindPopup(popup_ee187d57c56d4a207916ebad56fe1cc3)
+        ;
+
+        
+    
+    
+            circle_marker_ebeb728334a77cc9ac52cef68e05ef46.bindTooltip(
+                `<div>
+                     Point 47: Late blight (66.7%)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_15d91894ceefe76e9332a50cd0c649fa = L.circleMarker(
+                [29.42709, 30.836207],
+                {"bubblingMouseEvents": true, "color": "#4CAF50", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#4CAF50", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_3db1641c188161c6a172497a6801045d);
+        
+    
+        var popup_513be338b49d19fcb36bc2a659a6668d = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_93b94d34e459ff47157fa1f73086403a = $(`<div id="html_93b94d34e459ff47157fa1f73086403a" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial; min-width:220px; max-width:280px;">             <h4 style="margin:0 0 6px 0; color:#4CAF50;">                 [OK] healthy             </h4>             <p style="margin:0; font-size:12px;"><b> Location:</b> 29.427090, 30.836207</p>             <p style="margin:0; font-size:12px;"><b>🎯 Confidence:</b> 99.8%</p>             <p style="margin:0; font-size:12px;"><b> Severity:</b> None</p>             <p style="margin:0; font-size:12px;"><b> Spread Risk:</b> None</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px; color:#555;">هذا النبات سليم. لم يتم اكتشاف أي مرض....</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px;"><b> Treatment:</b></p>             <p style="margin:0; font-size:11px; color:#333;">استمر في جدول الري والتسميد المنتظم. | راقب أسبوعياً للكشف المبكر عن علامات الأمراض.</p>             <p style="margin:4px 0 0 0; font-size:10px; color:#aaa;"> 2026-05-03 00:49:24</p>         </div>         </div>`)[0];
+                popup_513be338b49d19fcb36bc2a659a6668d.setContent(html_93b94d34e459ff47157fa1f73086403a);
+            
+        
+
+        circle_marker_15d91894ceefe76e9332a50cd0c649fa.bindPopup(popup_513be338b49d19fcb36bc2a659a6668d)
+        ;
+
+        
+    
+    
+            circle_marker_15d91894ceefe76e9332a50cd0c649fa.bindTooltip(
+                `<div>
+                     Point 48: healthy (99.8%)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_49c6cbf181d997e9b3abffe32088eec0 = L.circleMarker(
+                [29.42709, 30.836103],
+                {"bubblingMouseEvents": true, "color": "#B71C1C", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#B71C1C", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_3db1641c188161c6a172497a6801045d);
+        
+    
+        var popup_106f8241538544a685c4548884305ca2 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_855e1c0904b6ff747e762bd2296aeb57 = $(`<div id="html_855e1c0904b6ff747e762bd2296aeb57" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial; min-width:220px; max-width:280px;">             <h4 style="margin:0 0 6px 0; color:#B71C1C;">                 [!] Late blight             </h4>             <p style="margin:0; font-size:12px;"><b> Location:</b> 29.427090, 30.836103</p>             <p style="margin:0; font-size:12px;"><b>🎯 Confidence:</b> 97.0%</p>             <p style="margin:0; font-size:12px;"><b> Severity:</b> Critical</p>             <p style="margin:0; font-size:12px;"><b> Spread Risk:</b> Very High</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px; color:#555;">اللفحة المتأخرة على البطاطس هي أشد الأمراض تدميراً — سببها نفس الممرض الذي أحدث المجاعة الأيرلندية....</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px;"><b> Treatment:</b></p>             <p style="margin:0; font-size:11px; color:#333;">تصرف فوراً — هذا المرض يمكن أن يدمر حقلاً بأكمله في أيام. | أزل جميع النباتات المصابة وأحرقها.</p>             <p style="margin:4px 0 0 0; font-size:10px; color:#aaa;"> 2026-05-03 00:49:24</p>         </div>         </div>`)[0];
+                popup_106f8241538544a685c4548884305ca2.setContent(html_855e1c0904b6ff747e762bd2296aeb57);
+            
+        
+
+        circle_marker_49c6cbf181d997e9b3abffe32088eec0.bindPopup(popup_106f8241538544a685c4548884305ca2)
+        ;
+
+        
+    
+    
+            circle_marker_49c6cbf181d997e9b3abffe32088eec0.bindTooltip(
+                `<div>
+                     Point 49: Late blight (97.0%)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_cad296ec6bae5a7f9c16dc3b87831f03 = L.circleMarker(
+                [29.42709, 30.836],
+                {"bubblingMouseEvents": true, "color": "#B71C1C", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#B71C1C", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_3db1641c188161c6a172497a6801045d);
+        
+    
+        var popup_146c1530673aa092280602896a2bf7b8 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_58a082fcb07d806f43148cf73eb160df = $(`<div id="html_58a082fcb07d806f43148cf73eb160df" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial; min-width:220px; max-width:280px;">             <h4 style="margin:0 0 6px 0; color:#B71C1C;">                 [!] Late blight             </h4>             <p style="margin:0; font-size:12px;"><b> Location:</b> 29.427090, 30.836000</p>             <p style="margin:0; font-size:12px;"><b>🎯 Confidence:</b> 100.0%</p>             <p style="margin:0; font-size:12px;"><b> Severity:</b> Critical</p>             <p style="margin:0; font-size:12px;"><b> Spread Risk:</b> Very High</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px; color:#555;">اللفحة المتأخرة على البطاطس هي أشد الأمراض تدميراً — سببها نفس الممرض الذي أحدث المجاعة الأيرلندية....</p>             <hr style="border:1px solid #eee; margin:6px 0;">             <p style="margin:0; font-size:11px;"><b> Treatment:</b></p>             <p style="margin:0; font-size:11px; color:#333;">تصرف فوراً — هذا المرض يمكن أن يدمر حقلاً بأكمله في أيام. | أزل جميع النباتات المصابة وأحرقها.</p>             <p style="margin:4px 0 0 0; font-size:10px; color:#aaa;"> 2026-05-03 00:49:25</p>         </div>         </div>`)[0];
+                popup_146c1530673aa092280602896a2bf7b8.setContent(html_58a082fcb07d806f43148cf73eb160df);
+            
+        
+
+        circle_marker_cad296ec6bae5a7f9c16dc3b87831f03.bindPopup(popup_146c1530673aa092280602896a2bf7b8)
+        ;
+
+        
+    
+    
+            circle_marker_cad296ec6bae5a7f9c16dc3b87831f03.bindTooltip(
+                `<div>
+                     Point 50: Late blight (100.0%)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+</script>
+</html>

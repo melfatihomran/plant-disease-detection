@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_1e56aca8126d11680df08c76a14e0c3e {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.2/leaflet.draw.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.2/leaflet.draw.css"/>
+</head>
+<body>
+    
+    
+    <div style="
+        position: fixed;
+        top: 15px; left: 60px;
+        z-index: 9999;
+        background: white;
+        padding: 15px 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        font-family: Arial, sans-serif;
+        max-width: 340px;
+    ">
+        <h3 style="margin:0 0 8px 0; color:#2C7A3F;"> Farm Setup</h3>
+        <p style="margin:0 0 6px 0; font-size:13px; color:#333;">
+            <b>Step 1:</b> Navigate to your farm location on the map.
+        </p>
+        <p style="margin:0 0 6px 0; font-size:13px; color:#333;">
+            <b>Step 2:</b> Click the <b>polygon tool</b> (left toolbar) and draw your farm borders.
+        </p>
+        <p style="margin:0 0 6px 0; font-size:13px; color:#333;">
+            <b>Step 3:</b> When done, right-click to close the shape.
+        </p>
+        <p style="margin:0 0 10px 0; font-size:13px; color:#333;">
+            <b>Step 4:</b> Copy the coordinates below into <b>farm_config.json</b>
+        </p>
+        <hr style="border:1px solid #eee; margin:8px 0;">
+        <p style="margin:0; font-size:11px; color:#888;">
+            💡 Tip: Use satellite view to clearly see your farm boundaries.
+        </p>
+    </div>
+    
+    
+    <div style="
+        position: fixed;
+        bottom: 30px; left: 50%;
+        transform: translateX(-50%);
+        z-index: 9999;
+        background: white;
+        padding: 12px 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        font-family: Arial, sans-serif;
+        text-align: center;
+        min-width: 400px;
+    ">
+        <p style="margin:0 0 8px 0; font-size:13px; color:#333; font-weight:bold;">
+            📋 Your farm coordinates will appear here after drawing:
+        </p>
+        <textarea id="coords_output" rows="4" style="
+            width:100%; font-size:11px;
+            border:1px solid #ddd; border-radius:6px;
+            padding:6px; resize:none; font-family:monospace;
+        " placeholder='Draw your farm on the map above...'></textarea>
+        <p style="margin:6px 0 0 0; font-size:11px; color:#888;">
+            Copy these coordinates and paste into farm_config.json -> "coordinates" field
+        </p>
+    </div>
+
+    <script>
+    function updateCoords() {
+        setTimeout(function() {
+            var layers = [];
+            document.querySelectorAll('.leaflet-interactive').forEach(function(el) {
+            });
+
+            // Listen for draw events
+            document.addEventListener('DOMContentLoaded', function() {
+                if (window._map) {
+                    window._map.on('draw:created', function(e) {
+                        var coords = e.layer.getLatLngs()[0].map(function(p) {
+                            return [parseFloat(p.lat.toFixed(6)), parseFloat(p.lng.toFixed(6))];
+                        });
+                        document.getElementById('coords_output').value =
+                            JSON.stringify(coords, null, 2);
+                    });
+                }
+            });
+        }, 1000);
+    }
+    updateCoords();
+    </script>
+    
+    
+            <div class="folium-map" id="map_1e56aca8126d11680df08c76a14e0c3e" ></div>
+        
+    
+            
+        
+</body>
+<script>
+    
+    
+            var map_1e56aca8126d11680df08c76a14e0c3e = L.map(
+                "map_1e56aca8126d11680df08c76a14e0c3e",
+                {
+                    center: [26.8206, 30.8025],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 7,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_a9af23dfd60f7ef00d50e809d59009b1 = L.tileLayer(
+                "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+                {
+  "minZoom": 0,
+  "maxZoom": 18,
+  "maxNativeZoom": 18,
+  "noWrap": false,
+  "attribution": "Esri",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_a9af23dfd60f7ef00d50e809d59009b1.addTo(map_1e56aca8126d11680df08c76a14e0c3e);
+        
+    
+            var options = {
+              position: "topleft",
+              draw: {"circle": false, "circlemarker": false, "marker": false, "polygon": true, "polyline": false, "rectangle": true},
+              edit: {"edit": true},
+            }
+                // FeatureGroup is to store editable layers.
+                var drawnItems_draw_control_520323fe7c50a98184158bb2acc4be9e =
+                    new L.featureGroup().addTo(
+                        map_1e56aca8126d11680df08c76a14e0c3e
+                    );
+
+            options.edit.featureGroup = drawnItems_draw_control_520323fe7c50a98184158bb2acc4be9e;
+            var draw_control_520323fe7c50a98184158bb2acc4be9e = new L.Control.Draw(
+                options
+            ).addTo( map_1e56aca8126d11680df08c76a14e0c3e );
+            map_1e56aca8126d11680df08c76a14e0c3e.on(L.Draw.Event.CREATED, function(e) {
+                var layer = e.layer,
+                    type = e.layerType;
+                var coords = JSON.stringify(layer.toGeoJSON());
+                layer.on('click', function() {
+                    alert(coords);
+                    console.log(coords);
+                });
+                drawnItems_draw_control_520323fe7c50a98184158bb2acc4be9e.addLayer(layer);
+            });
+            map_1e56aca8126d11680df08c76a14e0c3e.on('draw:created', function(e) {
+                drawnItems_draw_control_520323fe7c50a98184158bb2acc4be9e.addLayer(e.layer);
+            });
+
+            
+        
+</script>
+</html>
