@@ -106,7 +106,7 @@ torch torchvision  # pre-installed on Kaggle GPU kernels
 
 ---
 
-## 📝 Notes
+##  Notes
 
 - Dataset is balanced at **300 images per class** (2,100 total) to match classical ML experiments
 - ResNet-50 uses a **two-phase training** strategy: frozen backbone for epochs 1–10, then `layer4` + head unfrozen for fine-tuning in epochs 11–20
