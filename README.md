@@ -1,10 +1,11 @@
-# 🌿 AI Plant Disease Detection — CAI3101
+#  AI Plant Disease Detection 
+The idea is to develop an application that uses ai power to help farmers in rural areas with plant diseases
 
 Automated detection of **7 plant disease classes** (Tomato + Potato) using classical ML and deep learning models, trained on the [PlantVillage dataset](https://www.kaggle.com/datasets/emmarex/plantdisease).
 
 ---
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 plant-disease-detection/
@@ -30,7 +31,7 @@ plant-disease-detection/
 
 ---
 
-## 🧠 Models
+##  Models
 
 | Model | Type | Feature Input |
 |-------|------|---------------|
@@ -42,7 +43,7 @@ plant-disease-detection/
 
 ---
 
-## 🚀 How to Run
+##  How to Run
 
 ### Classical ML models (`main.py`)
 ```bash
@@ -59,7 +60,7 @@ python main.py
 
 ---
 
-## 📊 Classes
+##  Classes
 
 ```
 Tomato___Early_blight
@@ -73,7 +74,7 @@ Potato___Late_blight
 
 ---
 
-## 📈 Outputs
+##  Outputs
 
 Charts saved to `outputs/`:
 
@@ -91,7 +92,7 @@ Charts saved to `outputs/`:
 
 ---
 
-## 🛠 Requirements
+##  Requirements
 
 **Classical ML (`main.py`):**
 ```
